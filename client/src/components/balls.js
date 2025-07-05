@@ -345,8 +345,6 @@ const isMobile = () => window.innerWidth <= 768;
 const AnimatedBallsComponent = () => {
     const canvasRef = useRef(null);
     const simulationRef = useRef(null);
-    const lastScrollY = useRef(window.scrollY);
-    const [scrollDelta, setScrollDelta] = useState(0);
 
     useEffect(() => {
         const canvas = canvasRef.current;

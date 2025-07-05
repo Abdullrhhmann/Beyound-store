@@ -168,31 +168,31 @@ const CheckoutPage = () => {
   };
 
   // Autofill location using browser geolocation and reverse geocoding
-  const handleUseCurrentLocation = async () => {
-    if (!navigator.geolocation) {
-      alert('Geolocation is not supported by your browser.');
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      try {
-        // Use OpenStreetMap Nominatim API for reverse geocoding
-        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
-        const data = await response.json();
-        const city = data.address.city || data.address.town || data.address.village || '';
-        const governorate = data.address.state || '';
-        setFormData(prev => ({
-          ...prev,
-          city,
-          governorate,
-        }));
-      } catch (error) {
-        alert('Could not fetch location details.');
-      }
-    }, () => {
-      alert('Unable to retrieve your location.');
-    });
-  };
+  // const handleUseCurrentLocation = async () => {
+  //   if (!navigator.geolocation) {
+  //     alert('Geolocation is not supported by your browser.');
+  //     return;
+  //   }
+  //   navigator.geolocation.getCurrentPosition(async (position) => {
+  //     const { latitude, longitude } = position.coords;
+  //     try {
+  //       // Use OpenStreetMap Nominatim API for reverse geocoding
+  //       const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
+  //       const data = await response.json();
+  //       const city = data.address.city || data.address.town || data.address.village || '';
+  //       const governorate = data.address.state || '';
+  //       setFormData(prev => ({
+  //         ...prev,
+  //         city,
+  //         governorate,
+  //       }));
+  //     } catch (error) {
+  //       alert('Could not fetch location details.');
+  //     }
+  //   }, () => {
+  //     alert('Unable to retrieve your location.');
+  //   });
+  // };
 
   if (items.length === 0) {
     return (

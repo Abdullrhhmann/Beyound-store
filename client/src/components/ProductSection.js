@@ -1,24 +1,15 @@
 import React, { useRef as reactUseRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
 
 const ProductSection = ({ product, index }) => {
   const ref = reactUseRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { addToCart, addTrigger, totalItems } = useCart();
+  const { addToCart, totalItems } = useCart();
   const videoRef = reactUseRef(null);
   const [selectedSize, setSelectedSize] = useState('M');
   const [isVideoGrowing, setIsVideoGrowing] = useState(false);
-
-  const backgroundColors = [
-    'bg-yellow-50',
-    'bg-blue-50', 
-    'bg-green-50'
-  ];
-
-  // Unified dark gradient for all cards
-  const cardGradient = 'bg-gradient-to-r from-black via-gray-900 to-black';
 
   const containerVariants = {
     hidden: { opacity: 0 },

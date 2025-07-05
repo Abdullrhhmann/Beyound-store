@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Users, Leaf, Target, Star, Award, Globe, Sparkles, BookOpen, AlertTriangle, User } from 'lucide-react';
+import { Heart, Users, Leaf, Target, Star, Award, Globe, BookOpen, AlertTriangle } from 'lucide-react';
 import ceoImage from '../assets/images/ceo.jpg';
 
 const AboutSection = () => {

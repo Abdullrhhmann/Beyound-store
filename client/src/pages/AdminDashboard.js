@@ -9,7 +9,6 @@ const AdminDashboard = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [showCreateOrderModal, setShowCreateOrderModal] = useState(false);
-  const [editingOrder, setEditingOrder] = useState(null);
 
   // New order form state
   const [newOrder, setNewOrder] = useState({

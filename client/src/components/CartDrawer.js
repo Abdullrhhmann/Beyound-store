@@ -8,7 +8,7 @@ import pantsImg from '../assets/product-images/pants-thumpnail.jpg';
 import shirtImg from '../assets/product-images/shirt-thumpnail.jpg';
 
 const CartDrawer = () => {
-  const { items, isCartOpen, setCartOpen, totalPrice, updateQuantity, removeFromCart, clearCart, clearCartAndStorage } = useCart();
+  const { items, isCartOpen, setCartOpen, totalPrice, updateQuantity, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = React.useState(false);
 

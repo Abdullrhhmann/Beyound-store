@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Menu, X, Home, Package, Users, Phone, Settings, Star } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
@@ -14,7 +14,6 @@ const Navigation = () => {
 
   // Hero section in view detection
   const [heroInView, setHeroInView] = useState(true);
-  const heroRef = useRef(null);
 
   useEffect(() => {
     // Find the hero section by id

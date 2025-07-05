@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import CartDrawer from '../components/CartDrawer';
 import HeroSection from '../components/HeroSection';
 import SlidingTextSeparator from '../components/SlidingTextSeparator';
@@ -13,8 +13,6 @@ import AnimatedSectionTitle from '../components/AnimatedSectionTitle';
 
 
 const HomePage = () => {
-  const productsTitleRef = useRef(null);
-
   // State for products from API
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
