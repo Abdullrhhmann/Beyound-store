@@ -79,7 +79,7 @@ const ProductSection = ({ product, index }) => {
         document.removeEventListener('click', handleUserInteraction);
       };
     }
-  }, []);
+  }, [videoRef]);
 
   return (
     <section 
