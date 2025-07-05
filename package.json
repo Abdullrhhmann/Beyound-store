@@ -1,7 +1,7 @@
 {
-  "name": "modern-ecommerce-website",
+  "name": "beyound-store",
   "version": "1.0.0",
-  "description": "Modern full-stack e-commerce website with smooth animations and dynamic scrolling",
+  "description": "Modern e-commerce website for Beyound Store",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -10,8 +10,8 @@
     "build": "cd client && npm run build",
     "install-all": "npm install && cd client && npm install && cd ../server && npm install"
   },
-  "keywords": ["ecommerce", "react", "nodejs", "mongodb", "stripe"],
-  "author": "",
+  "keywords": ["ecommerce", "react", "nodejs", "mongodb", "beyound-store"],
+  "author": "Abdulrahman Karkour",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2"

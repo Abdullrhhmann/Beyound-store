@@ -1,6 +1,6 @@
-# Modern E-commerce Website
+# Beyound Store - Modern E-commerce Website
 
-A full-stack e-commerce website built with React frontend and Node.js backend, featuring modern UI/UX design, mobile responsiveness, and complete order management system.
+A full-stack e-commerce website for Beyound Store, built with React frontend and Node.js backend, featuring modern UI/UX design, mobile responsiveness, and complete order management system.
 
 ## 🚀 Features
 
@@ -61,7 +61,7 @@ A full-stack e-commerce website built with React frontend and Node.js backend, f
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd website-beyound
+   cd beyound-store
    ```
 
 2. **Install dependencies**
@@ -88,7 +88,7 @@ A full-stack e-commerce website built with React frontend and Node.js backend, f
 4. **Configure Environment Variables**
    Edit `server/.env`:
    ```env
-   MONGODB_URI=mongodb://localhost:27017/ecommerce
+   MONGODB_URI=mongodb://localhost:27017/beyound-store
    PORT=5000
    NODE_ENV=development
    ```
@@ -285,4 +285,8 @@ This project is licensed under the MIT License.
 - React team for the amazing framework
 - Tailwind CSS for the utility-first styling
 - Framer Motion for smooth animations
-- MongoDB for the database solution 
+- MongoDB for the database solution
+
+---
+
+**Beyound Store** - Where style meets innovation! 🛍️✨ 
