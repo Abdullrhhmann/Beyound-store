@@ -13,8 +13,9 @@
     "seed:all": "npm run seed && npm run seed:products"
   },
   "keywords": ["api", "backend", "ecommerce", "beyound-store"],
-  "author": "Abdulrahman Karkour",
+  "author": "Abdulrahman Karkour <abdullrhhmann@gmail.com> (https://github.com/abdullrhhmann)",
   "license": "MIT",
+  "copyright": "© 2025 Abdulrahman Karkour (@abdullrhhmann). All rights reserved.",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

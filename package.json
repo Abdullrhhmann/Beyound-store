@@ -11,8 +11,9 @@
     "install-all": "npm install && cd client && npm install && cd ../server && npm install"
   },
   "keywords": ["ecommerce", "react", "nodejs", "mongodb", "beyound-store"],
-  "author": "Abdulrahman Karkour",
+  "author": "Abdulrahman Karkour <abdullrhhmann@gmail.com> (https://github.com/abdullrhhmann)",
   "license": "MIT",
+  "copyright": "© 2025 Abdulrahman Karkour (@abdullrhhmann). All rights reserved.",
   "devDependencies": {
     "concurrently": "^8.2.2"
   }

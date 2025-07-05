@@ -274,11 +274,15 @@ To access the website from mobile devices on the same network:
 
 This project is licensed under the MIT License.
 
+## © Copyright
+
+© 2025 Abdulrahman Karkour (@abdullrhhmann). All rights reserved.
+
 ## 👨‍💻 Author
 
 **Abdulrahman Karkour**
 - Email: abdullrhhmann@gmail.com
-- GitHub: [Your GitHub]
+- GitHub: [@abdullrhhmann](https://github.com/abdullrhhmann)
 
 ## 🙏 Acknowledgments
 
