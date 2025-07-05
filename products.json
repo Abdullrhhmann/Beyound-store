@@ -1,0 +1,26 @@
+﻿
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"products":[{"_id":"686935b8f06d450e5136742e","name":"Pants","description":"Stylish
+                     and comfortable pants designed for everyday wear. Made with premium fabric for 
+                    maximum comfort and durability.","pr...
+RawContent        : HTTP/1.1 200 OK
+                    Content-Security-Policy: default-src 'self';base-uri 'self';font-src 'self' https: 
+                    data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 
+                    'none';script-src 's...
+Forms             : {}
+Headers           : {[Content-Security-Policy, default-src 'self';base-uri 'self';font-src 'self' 
+                    https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' 
+                    data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' 
+                    https: 'unsafe-inline';upgrade-insecure-requests], [Cross-Origin-Opener-Policy, 
+                    same-origin], [Cross-Origin-Resource-Policy, same-origin], [Origin-Agent-Cluster, 
+                    ?1]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 2033
+
+
+
