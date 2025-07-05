@@ -1,23 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
 import CartDrawer from '../components/CartDrawer';
 import HeroSection from '../components/HeroSection';
 import SlidingTextSeparator from '../components/SlidingTextSeparator';
 import AboutSection from '../components/AboutSection';
-import ScrollRevealSection from '../components/ScrollRevealSection';
 import ProductSection from '../components/ProductSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import Footer from '../components/Footer';
 import Navigation from '../components/Navigation';
 import AnimatedBallsComponent from '../components/balls';
 import FloatingLogo from '../components/FloatingLogo';
-import ScrollingLogoSection from '../components/ScrollingLogoSection';
 import AnimatedSectionTitle from '../components/AnimatedSectionTitle';
 
 
 const HomePage = () => {
   const productsTitleRef = useRef(null);
-  const isProductsTitleInView = useInView(productsTitleRef, { once: true, margin: "-100px" });
 
   // State for products from API
   const [products, setProducts] = useState([]);
