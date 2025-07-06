@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Users, Leaf, Target, Star, Award, Globe, BookOpen, AlertTriangle } from 'lucide-react';
 import ceoImage from '../assets/images/ceo.jpg';
+import gemyImage from '../assets/images/gemy.jpg';
 
 const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
 
@@ -170,6 +171,24 @@ const AboutSection = () => {
               style={{ willChange: 'transform, opacity, filter' }}
             >
               <img src={ceoImage} alt="CEO" className="w-full h-full object-cover" />
+            </motion.div>
+          )}
+
+          {/* Gemy Image Card - styled like CEO card */}
+          {isMobile ? (
+            <div className="bg-gradient-to-br from-blue-900/80 via-black/80 to-purple-900/80 rounded-2xl md:rounded-3xl shadow-3xl shadow-black/60 overflow-hidden">
+              <img src={gemyImage} alt="Gemy" className="w-full h-full object-cover" />
+            </div>
+          ) : (
+            <motion.div 
+              className="bg-gradient-to-br from-blue-900/80 via-black/80 to-purple-900/80 rounded-2xl md:rounded-3xl shadow-3xl shadow-black/60 overflow-hidden"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.6 }}
+              style={{ willChange: 'transform, opacity, filter' }}
+            >
+              <img src={gemyImage} alt="Gemy" className="w-full h-full object-cover" />
             </motion.div>
           )}
 
