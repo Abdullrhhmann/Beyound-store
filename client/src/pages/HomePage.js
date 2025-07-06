@@ -42,6 +42,7 @@ const HomePage = () => {
         // Transform the API data to match the expected format
         const transformedProducts = productsArray.map(product => ({
           id: product._id,
+          _id: product._id,
           name: product.name,
           description: product.description,
           price: product.price,

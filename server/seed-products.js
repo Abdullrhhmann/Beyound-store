@@ -61,7 +61,7 @@ const products = [
 ];
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/modern-ecommerce', {
+mongoose.connect('mongodb+srv://beyound:admin@beyound.pkowrj5.mongodb.net/?retryWrites=true&w=majority&appName=beyound', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

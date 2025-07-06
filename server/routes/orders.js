@@ -107,29 +107,11 @@ router.post('/', [
         return res.status(400).json({ message: `Size is required for ${product.name}` });
       }
       
-      // Find the size in product sizes
-      const sizeInfo = product.sizes.find(s => s.size === item.size);
-      if (!sizeInfo) {
-        console.log('Size not available:', item.size, 'for product:', product.name);
-        return res.status(400).json({ message: `Size ${item.size} not available for ${product.name}` });
-      }
-      
-      // Check stock for specific size
-      if (sizeInfo.stock < item.quantity) {
-        console.log('Insufficient stock for size:', item.size, 'product:', product.name);
-        return res.status(400).json({ message: `Insufficient stock for ${product.name} in size ${item.size}` });
-      }
-      
-      item.name = product.name;
-      item.price = product.price;
+      // Remove size and stock checks
+      // item.name = product.name;
+      // item.price = product.price;
       subtotal += product.price * item.quantity;
-      
-      // Update product stock for specific size
-      await Product.findByIdAndUpdate(item.productId, {
-        $inc: { 'sizes.$[size].stock': -item.quantity }
-      }, {
-        arrayFilters: [{ 'size.size': item.size }]
-      });
+      // Remove stock decrement
     }
     
     // Calculate tax and shipping

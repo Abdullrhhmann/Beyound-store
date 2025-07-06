@@ -37,7 +37,7 @@ const limiter = rateLimit({
 app.use('/api/', limiter);
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/beyound-store', {
+mongoose.connect('mongodb+srv://beyound:admin@beyound.pkowrj5.mongodb.net/beyound-db?retryWrites=true&w=majority&appName=beyound' || 'mongodb+srv://beyound:admin@beyound.pkowrj5.mongodb.net/beyound-db?retryWrites=true&w=majority&appName=beyound', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

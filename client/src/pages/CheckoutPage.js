@@ -104,7 +104,7 @@ const CheckoutPage = () => {
           country: 'Egypt'
         },
         items: items.map(item => ({
-          productId: item.productId, // Use real MongoDB productId
+          productId: item.productId,
           name: item.name,
           price: item.price,
           quantity: item.quantity,
@@ -115,7 +115,7 @@ const CheckoutPage = () => {
       };
 
       console.log('=== SENDING ORDER PAYLOAD ===');
-      console.log('Order payload:', JSON.stringify(orderPayload, null, 2));
+      console.log('Order payload:', orderPayload);
       console.log('Cart items:', items);
       console.log('Cart items structure:', items.map(item => ({
         hasProductId: !!item.productId,
@@ -146,6 +146,7 @@ const CheckoutPage = () => {
 
       await new Promise(resolve => setTimeout(resolve, 2000));
       clearCart();
+      localStorage.removeItem('cart');
       navigate('/order-confirmation');
     } catch (error) {
       let errorMsg = 'Payment failed';
