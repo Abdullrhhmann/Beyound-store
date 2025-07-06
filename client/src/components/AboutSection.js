@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Heart, Users, Leaf, Target, Star, Award, Globe, BookOpen, AlertTriangle } from 'lucide-react';
 import ceoImage from '../assets/images/ceo.jpg';
 
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+
 const AboutSection = () => {
   const stats = [
     { number: "100%", label: "Adaptive Design", icon: <Target className="w-6 h-6" /> },
@@ -34,60 +36,51 @@ const AboutSection = () => {
     }
   ];
 
-  // Optimized animations using only transform properties for 60fps
+  // Optimized animations: only transform and opacity, shorter duration on mobile
+  const baseDuration = isMobile ? 0.3 : 0.6;
+  const baseEase = [0.25, 0.46, 0.45, 0.94];
+
   const slideInFromLeft = {
-    hidden: { 
-      opacity: 0, 
-      transform: 'translateX(-50px)',
-      filter: 'blur(4px)'
+    hidden: {
+      opacity: 0,
+      x: -50
     },
-    visible: { 
-      opacity: 1, 
-      transform: 'translateX(0px)',
-      filter: 'blur(0px)',
-      transition: { 
-        duration: 0.6, 
-        ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth motion
-        opacity: { duration: 0.4 },
-        filter: { duration: 0.3 }
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: baseDuration,
+        ease: baseEase
       }
     }
   };
 
   const slideInFromRight = {
-    hidden: { 
-      opacity: 0, 
-      transform: 'translateX(50px)',
-      filter: 'blur(4px)'
+    hidden: {
+      opacity: 0,
+      x: 50
     },
-    visible: { 
-      opacity: 1, 
-      transform: 'translateX(0px)',
-      filter: 'blur(0px)',
-      transition: { 
-        duration: 0.6, 
-        ease: [0.25, 0.46, 0.45, 0.94],
-        opacity: { duration: 0.4 },
-        filter: { duration: 0.3 }
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: baseDuration,
+        ease: baseEase
       }
     }
   };
 
   const fadeInUp = {
-    hidden: { 
-      opacity: 0, 
-      transform: 'translateY(30px)',
-      filter: 'blur(2px)'
+    hidden: {
+      opacity: 0,
+      y: 30
     },
-    visible: { 
-      opacity: 1, 
-      transform: 'translateY(0px)',
-      filter: 'blur(0px)',
-      transition: { 
-        duration: 0.5, 
-        ease: [0.25, 0.46, 0.45, 0.94],
-        opacity: { duration: 0.3 },
-        filter: { duration: 0.2 }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: isMobile ? 0.25 : 0.5,
+        ease: baseEase
       }
     }
   };
