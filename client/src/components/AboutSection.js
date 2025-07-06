@@ -92,7 +92,6 @@ const AboutSection = () => {
         {/* Hero Section - Slides in from left */}
         {isMobile ? (
           <div className="text-center mb-8">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold text-white mb-6 md:mb-8"></h2>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-100 mb-4 md:mb-6 font-medium"></p>
           </div>
         ) : (
@@ -104,7 +103,6 @@ const AboutSection = () => {
             viewport={{ once: true, amount: 0.6 }}
             style={{ willChange: 'transform, opacity, filter' }}
           >
-            <motion.h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold text-white mb-6 md:mb-8"></motion.h2>
             <motion.p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-100 mb-4 md:mb-6 font-medium"></motion.p>
           </motion.div>
         )}
