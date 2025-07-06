@@ -23,8 +23,8 @@ const HomePage = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        console.log('Fetching products from:', 'http://192.168.43.103:5000/api/products');
-        const response = await fetch('http://192.168.43.103:5000/api/products');
+        console.log('Fetching products from:', 'http://localhost:5000/api/products');
+        const response = await fetch('http://localhost:5000/api/products');
         console.log('Response status:', response.status);
         console.log('Response ok:', response.ok);
         
