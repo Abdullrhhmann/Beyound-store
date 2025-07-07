@@ -4,7 +4,6 @@ import HeroSection from '../components/HeroSection';
 import SlidingTextSeparator from '../components/SlidingTextSeparator';
 import Footer from '../components/Footer';
 import Navigation from '../components/Navigation';
-import FloatingLogo from '../components/FloatingLogo';
 
 // Replace direct imports with lazy imports for heavy components
 const AboutSection = lazy(() => import('../components/AboutSection'));
@@ -98,7 +97,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-transparent m-0 p-0">
-      <FloatingLogo />
       <div className="relative z-10 flex-1 flex flex-col">
         <Navigation />
         <CartDrawer />
