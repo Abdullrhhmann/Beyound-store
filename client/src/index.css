@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --gradient-background-start: rgb(108, 0, 162);
+  --gradient-background-end: rgb(0, 17, 82);
+  --first-color: 18, 113, 255;
+  --second-color: 221, 74, 255;
+  --third-color: 100, 220, 255;
+  --fourth-color: 200, 50, 50;
+  --fifth-color: 180, 180, 50;
+  --pointer-color: 140, 100, 255;
+  --size: 80%;
+  --blending-value: hard-light;
+}
+
 @layer base {
   * {
     box-sizing: border-box;

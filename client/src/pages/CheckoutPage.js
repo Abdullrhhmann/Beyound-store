@@ -8,6 +8,7 @@ import pantsImg from '../assets/product-images/pants-thumpnail.webp';
 import shirtImg from '../assets/product-images/shirt-thumpnail.webp';
 import buLogo from '../assets/logos/BU.webp';
 import enactusLogo from '../assets/logos/Enactus-logo-black.webp';
+import BackgroundGradientAnimation from '../components/BackgroundGradientAnimation';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -198,6 +199,7 @@ const CheckoutPage = () => {
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-dark-950 flex items-center justify-center">
+        <BackgroundGradientAnimation />
         <div className="text-center">
           <h2 className="text-2xl font-bold text-white mb-4">Your cart is empty</h2>
           <motion.button
@@ -214,7 +216,8 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen flex flex-col bg-transparent m-0 p-0">
+      <BackgroundGradientAnimation />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
