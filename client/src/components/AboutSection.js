@@ -4,6 +4,34 @@ import { Heart, Users, Leaf, Target, Star, Award, Globe, BookOpen, AlertTriangle
 import ceoImage from '../assets/images/ceo.webp';
 import gemyImage from '../assets/images/gemy.webp';
 
+// Animation variants (centralized for clarity)
+const getSlideInFromLeft = (duration, ease) => ({
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration, ease }
+  }
+});
+
+const getSlideInFromRight = (duration, ease) => ({
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration, ease }
+  }
+});
+
+const getFadeInUp = (duration, ease) => ({
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration, ease }
+  }
+});
+
 const AboutSection = () => {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -44,54 +72,9 @@ const AboutSection = () => {
     }
   ];
 
-  // Optimized animations: only transform and opacity, shorter duration on mobile
+  // Animation config
   const baseDuration = isMobile ? 0.3 : 0.6;
   const baseEase = [0.25, 0.46, 0.45, 0.94];
-
-  const slideInFromLeft = {
-    hidden: {
-      opacity: 0,
-      x: -50
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: baseDuration,
-        ease: baseEase
-      }
-    }
-  };
-
-  const slideInFromRight = {
-    hidden: {
-      opacity: 0,
-      x: 50
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: baseDuration,
-        ease: baseEase
-      }
-    }
-  };
-
-  const fadeInUp = {
-    hidden: {
-      opacity: 0,
-      y: 30
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: isMobile ? 0.25 : 0.5,
-        ease: baseEase
-      }
-    }
-  };
 
   return (
     <section className="section-container bg-transparent pt-0 pb-20">
@@ -105,8 +88,8 @@ const AboutSection = () => {
         ) : (
           <motion.div 
             className="text-center mb-8"
-            variants={slideInFromLeft}
-            initial={false}
+            variants={getSlideInFromLeft(baseDuration, baseEase)}
+            initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
             style={{ willChange: 'transform, opacity, filter' }}
@@ -140,8 +123,8 @@ const AboutSection = () => {
           ) : (
             <motion.div 
               className="bg-gradient-to-br from-red-900/80 via-black/80 to-gray-900/80 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-3xl shadow-black/60 flex flex-col justify-between"
-              variants={slideInFromLeft}
-              initial={false}
+              variants={getSlideInFromLeft(baseDuration, baseEase)}
+              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
               style={{ willChange: 'transform, opacity, filter' }}
@@ -172,8 +155,8 @@ const AboutSection = () => {
           ) : (
             <motion.div 
               className="bg-gradient-to-br from-blue-900/80 via-black/80 to-purple-900/80 rounded-2xl md:rounded-3xl shadow-3xl shadow-black/60 overflow-hidden"
-              variants={fadeInUp}
-              initial={false}
+              variants={getFadeInUp(baseDuration, baseEase)}
+              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
               style={{ willChange: 'transform, opacity, filter' }}
@@ -190,8 +173,8 @@ const AboutSection = () => {
           ) : (
             <motion.div 
               className="bg-gradient-to-br from-blue-900/80 via-black/80 to-purple-900/80 rounded-2xl md:rounded-3xl shadow-3xl shadow-black/60 overflow-hidden"
-              variants={fadeInUp}
-              initial={false}
+              variants={getFadeInUp(baseDuration, baseEase)}
+              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
               style={{ willChange: 'transform, opacity, filter' }}
@@ -219,8 +202,8 @@ const AboutSection = () => {
         ) : (
           <motion.div 
             className="bg-gradient-to-br from-red-900/80 via-black/80 to-gray-900/80 rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-3xl shadow-black/60 flex flex-col max-w-2xl mx-auto mb-20 mt-8"
-            variants={slideInFromRight}
-            initial={false}
+            variants={getSlideInFromRight(baseDuration, baseEase)}
+            initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
             style={{ willChange: 'transform, opacity, filter' }}
@@ -253,8 +236,8 @@ const AboutSection = () => {
         ) : (
           <motion.div 
             className="bg-gradient-to-r from-black via-gray-900 to-black text-white p-8 md:p-12 rounded-2xl md:rounded-3xl mb-16 md:mb-24 text-center"
-            variants={slideInFromLeft}
-            initial={false}
+            variants={getSlideInFromLeft(baseDuration, baseEase)}
+            initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
             style={{ willChange: 'transform, opacity, filter' }}
@@ -300,10 +283,10 @@ const AboutSection = () => {
                 whileHover={{
                   scale: 1.05,
                   y: -10,
-                  transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }
+                  transition: { duration: 0.01, ease: baseEase }
                 }}
-                variants={index % 2 === 0 ? slideInFromLeft : slideInFromRight}
-                initial={false}
+                variants={index % 2 === 0 ? getSlideInFromLeft(baseDuration, baseEase) : getSlideInFromRight(baseDuration, baseEase)}
+                initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.6 }}
                 style={{ willChange: 'transform, opacity, filter' }}
@@ -329,8 +312,8 @@ const AboutSection = () => {
           ) : (
             <motion.h3 
               className="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-12 md:mb-16"
-              variants={slideInFromLeft}
-              initial={false}
+              variants={getSlideInFromLeft(baseDuration, baseEase)}
+              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
               style={{ willChange: 'transform, opacity, filter' }}
@@ -356,10 +339,10 @@ const AboutSection = () => {
                   whileHover={{
                     scale: 1.05,
                     y: -10,
-                    transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }
+                    transition: { duration: 0.08, ease: baseEase }
                   }}
-                  variants={index % 2 === 0 ? slideInFromLeft : slideInFromRight}
-                  initial={false}
+                  variants={index % 2 === 0 ? getSlideInFromLeft(baseDuration, baseEase) : getSlideInFromRight(baseDuration, baseEase)}
+                  initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.6 }}
                   style={{ willChange: 'transform, opacity, filter' }}
@@ -377,8 +360,8 @@ const AboutSection = () => {
         <div className="mb-12 md:mb-16">
           <motion.div 
             className="text-center mb-8 md:mb-12"
-            variants={slideInFromLeft}
-            initial={false}
+            variants={getSlideInFromLeft(baseDuration, baseEase)}
+            initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
             style={{ willChange: 'transform, opacity, filter' }}
@@ -396,8 +379,8 @@ const AboutSection = () => {
             {/* First Flash Card - Slides in from left */}
             <motion.div 
               className="bg-gradient-to-br from-blue-900 via-black to-blue-800 p-6 md:p-8 rounded-3xl shadow-2xl border border-blue-500/20 flex flex-col justify-center min-h-[280px] md:min-h-[320px] transform rotate-3"
-              variants={slideInFromLeft}
-              initial={false}
+              variants={getSlideInFromLeft(baseDuration, baseEase)}
+              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
               style={{ willChange: 'transform, opacity, filter' }}
@@ -427,8 +410,8 @@ const AboutSection = () => {
             {/* Second Flash Card - Slides in from right */}
             <motion.div 
               className="bg-gradient-to-br from-red-900/80 via-black/80 to-gray-900/80 p-6 md:p-8 rounded-3xl shadow-3xl shadow-black/60 border border-red-500/20 flex flex-col justify-center min-h-[280px] md:min-h-[320px] transform rotate-3"
-              variants={slideInFromRight}
-              initial={false}
+              variants={getSlideInFromRight(baseDuration, baseEase)}
+              initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
               style={{ willChange: 'transform, opacity, filter' }}
@@ -460,8 +443,8 @@ const AboutSection = () => {
         {/* Final Call to Action - Slides in from left */}
         <motion.div 
           className="text-center"
-          variants={slideInFromLeft}
-          initial={false}
+          variants={getSlideInFromLeft(baseDuration, baseEase)}
+          initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.6 }}
           style={{ willChange: 'transform, opacity, filter' }}
@@ -470,7 +453,7 @@ const AboutSection = () => {
             className="text-3xl md:text-4xl font-bold text-white mb-6"
             whileHover={{ 
               transform: 'scale(1.05)',
-              transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }
+              transition: { duration: 0.08, ease: baseEase }
             }}
             style={{ willChange: 'transform' }}
           >

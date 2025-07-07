@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './contexts/CartContext';
 import { ScrollProvider } from './contexts/ScrollContext';
@@ -9,16 +9,28 @@ import AdminDashboard from './pages/AdminDashboard';
 import Preloader from './components/Preloader';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  // Preloader total duration (ms)
+  const PRELOADER_DURATION = 2700; // matches Preloader.js
+  const APP_REVEAL_BEFORE = 800; // ms before preloader ends
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
+  const [showPreloader, setShowPreloader] = useState(true);
+  const [showApp, setShowApp] = useState(false);
+
+  useEffect(() => {
+    // Show app content before preloader ends
+    const appTimer = setTimeout(() => setShowApp(true), PRELOADER_DURATION - APP_REVEAL_BEFORE);
+    // Hide preloader after full duration
+    const preloaderTimer = setTimeout(() => setShowPreloader(false), PRELOADER_DURATION);
+    return () => {
+      clearTimeout(appTimer);
+      clearTimeout(preloaderTimer);
+    };
+  }, []);
 
   return (
     <>
-      <Preloader onLoadingComplete={handleLoadingComplete} />
-      {!isLoading && (
+      {showPreloader && <Preloader onLoadingComplete={() => {}} />}
+      {showApp && (
         <Router>
           <ScrollProvider>
             <CartProvider>

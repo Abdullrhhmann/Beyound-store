@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useSwipeable } from 'react-swipeable';
 
 const TestimonialsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const isMobile = window.innerWidth < 768;
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -111,6 +114,18 @@ const TestimonialsSection = () => {
       },
     },
   };
+
+  const handleSwipedLeft = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+  const handleSwipedRight = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: handleSwipedLeft,
+    onSwipedRight: handleSwipedRight,
+    trackMouse: true,
+  });
 
   const Card = ({ testimonial, index }) => {
     const [isFlipped, setIsFlipped] = useState(false);
@@ -233,30 +248,52 @@ const TestimonialsSection = () => {
             Discover why people love our adaptive clothing and the difference it makes in their lives
           </p>
           {/* Mobile scroll hint */}
-          <div className="md:hidden mt-4 text-gray-400 text-xs">
-            ← Swipe to see more testimonials →
-          </div>
-        </motion.div>
-        {/* Cards Grid - Horizontal scroll on mobile, grid on desktop */}
-        <div className="mb-8">
-          {/* First Row */}
-          <div className="flex overflow-x-auto md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
-            {testimonials.slice(0, 5).map((testimonial, index) => (
-              <div key={testimonial._id || index} className="flex-shrink-0 md:flex-shrink snap-center">
-                <Card testimonial={testimonial} index={index} />
-              </div>
-            ))}
-          </div>
-        </div>
-        
-                  {/* Second Row */}
-          <div className="flex overflow-x-auto md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
-          {testimonials.slice(5, 10).map((testimonial, index) => (
-            <div key={testimonial._id || index + 5} className="flex-shrink-0 md:flex-shrink snap-center">
-              <Card testimonial={testimonial} index={index + 5} />
+          {isMobile && (
+            <div className="md:hidden mt-4 text-gray-400 text-xs">
+              ← Swipe to see more testimonials →
             </div>
-          ))}
-        </div>
+          )}
+        </motion.div>
+        {/* Mobile: Carousel, Desktop: Grid */}
+        {isMobile ? (
+          <div {...swipeHandlers} className="relative w-full flex flex-col items-center">
+            <div className="w-full flex justify-center items-center" style={{ minHeight: '22rem' }}>
+              {testimonials.length > 0 && (
+                <Card testimonial={testimonials[currentIndex]} index={currentIndex} />
+              )}
+            </div>
+            {/* Dots navigation */}
+            <div className="flex justify-center mt-4 space-x-2">
+              {testimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`w-2 h-2 rounded-full ${idx === currentIndex ? 'bg-gray-500' : 'bg-gray-300'}`}
+                  onClick={() => setCurrentIndex(idx)}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* First Row */}
+            <div className="md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 pb-4 md:pb-0 mb-8">
+              {testimonials.slice(0, 5).map((testimonial, index) => (
+                <div key={testimonial._id || index} className="md:flex-shrink">
+                  <Card testimonial={testimonial} index={index} />
+                </div>
+              ))}
+            </div>
+            {/* Second Row */}
+            <div className="md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 pb-4 md:pb-0">
+              {testimonials.slice(5, 10).map((testimonial, index) => (
+                <div key={testimonial._id || index + 5} className="md:flex-shrink">
+                  <Card testimonial={testimonial} index={index + 5} />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </motion.div>
 
       {/* Floating Elements */}

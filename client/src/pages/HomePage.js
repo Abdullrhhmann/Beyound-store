@@ -107,11 +107,15 @@ const HomePage = () => {
             </Suspense>
           </div>
           
-          <Suspense fallback={<div>Loading...</div>}>
-            <AnimatedSectionTitle title="ABOUT US" height="200vh" />
-            <SlidingTextSeparator text="ABOUT US" />
-            <AboutSection />
-          </Suspense>
+          {/* ABOUT SECTION - Wrapped with id for navigation */}
+          <div >
+            <Suspense fallback={<div>Loading...</div>}>
+              <AnimatedSectionTitle title="ABOUT US" height="200vh" />
+              <SlidingTextSeparator text="ABOUT US" />
+              <div id="about"></div>
+              <AboutSection />
+            </Suspense>
+          </div>
           <AnimatedSectionTitle title="OUR PARTNERS" height="200vh" />  
           <div className="section-container my-8">
             <Suspense fallback={<div>Loading...</div>}>

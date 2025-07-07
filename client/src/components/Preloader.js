@@ -10,6 +10,7 @@ const Preloader = ({ onLoadingComplete }) => {
       setIsLoading(false);
       onLoadingComplete();
     }, 3500);
+
     return () => clearTimeout(timer);
   }, [onLoadingComplete]);
 
@@ -20,16 +21,16 @@ const Preloader = ({ onLoadingComplete }) => {
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.1 }}
         >
-          {/* Burgundy Circle - First */}
+          {/* blue Circle - First */}
           <motion.div
             className="absolute w-4 h-4 rounded-full"
             style={{ backgroundColor: '#150958' }}
-            initial={{ scale: 0.1, opacity: 0 }}
+            initial={{ scale: 0, opacity: 0 }}
             animate={{ 
               scale: 200,
-              opacity: [0, 1, 1, 0]
+              opacity: [1, 1, 1, 0]
             }}
             transition={{ 
               duration: 2,
@@ -38,7 +39,7 @@ const Preloader = ({ onLoadingComplete }) => {
             }}
           />
           
-          {/* Navy Circle - Second */}
+          {/* burgandy Circle - Second */}
           <motion.div
             className="absolute w-4 h-4 rounded-full"
             style={{ backgroundColor: '#8b001d' }}
@@ -48,10 +49,10 @@ const Preloader = ({ onLoadingComplete }) => {
               opacity: [0, 1, 1, 0]
             }}
             transition={{ 
-              duration: 3,
+              duration: 2,
               ease: "easeInOut",
               times: [0, 0.1, 0.8, 1],
-              delay: 1.5
+              delay: 1
             }}
           />
 
@@ -64,9 +65,8 @@ const Preloader = ({ onLoadingComplete }) => {
                 className="text-white mb-4 sm:mb-8"
                 style={{ 
                   fontFamily: "Fredoka One, cursive",
-                  fontWeight: "400",
-                  fontSize: "clamp(1.875rem, 5vw, 3.75rem)",
-                  textShadow: "3px 3px 6px rgba(0,0,0,0.4)",
+                  fontWeight: "900",
+                  fontSize: "clamp(2.875rem, 6vw, 4.75rem)",
                   letterSpacing: "0.15em",
                   lineHeight: "1.2",
                   textAlign: "center"
@@ -75,9 +75,9 @@ const Preloader = ({ onLoadingComplete }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.2 }}
                 transition={{ 
-                  duration: 2.8,
+                  duration: 1,
                   ease: "easeOut",
-                  delay: 0.3
+                  delay: 0
                 }}
               >
                 IT'S A MARATHON
@@ -91,20 +91,20 @@ const Preloader = ({ onLoadingComplete }) => {
                 className="text-white"
                 style={{ 
                   fontFamily: "Fredoka One, cursive",
-                  fontWeight: "400",
-                  fontSize: "clamp(1.875rem, 5vw, 3.75rem)",
-                  textShadow: "3px 3px 6px rgba(0,0,0,0.4)",
+                  fontWeight: "900",
+                  fontSize: "clamp(2.875rem, 6vw, 4.75rem)",
+                 
                   letterSpacing: "0.15em",
                   lineHeight: "1.2",
                   textAlign: "center"
                 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.2 }}
+                exit={{ opacity: 0, scale: 2 }}
                 transition={{ 
-                  duration: 0.8,
+                  duration: 1,
                   ease: "easeOut",
-                  delay: 1.8
+                  delay: 1.3
                 }}
               >
                 NOT A SPRINT
