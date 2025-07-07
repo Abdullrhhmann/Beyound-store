@@ -510,7 +510,7 @@ const LogosFooter = () => (
       {/* Center shadow */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-24 sm:w-64 sm:h-32 bg-black/60 rounded-full blur-2xl opacity-60 z-0"></div>
       <div className="flex items-center space-x-6 relative z-10">
-        <img src={buLogo} alt="BU Logo" className="h-20 w-auto object-contain drop-shadow-lg" />
+        <img src={buLogo} alt="BU Logo" className="h-20 w-auto object-contain drop-shadow-lg" style={{ aspectRatio: '1.42' }} />
         <span className="text-white text-4xl font-bold drop-shadow-lg">×</span>
         <img src={enactusLogo} alt="Enactus Logo" className="h-20 w-auto object-contain drop-shadow-lg" />
       </div>

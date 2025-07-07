@@ -81,8 +81,13 @@ const FloatingLogo = () => {
             <img
               src={BU_LOGO}
               alt="BU Logo"
-              className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 opacity-80"
+              className="w-32 sm:w-40 md:w-48 lg:w-56 opacity-80"
               style={{
+                objectFit: 'contain',
+                aspectRatio: '1.42', // 4960/3496 natural ratio
+                width: '100%',
+                maxWidth: '100%',
+                height: 'auto',
                 transform: `rotate(${Math.random() * 20 - 10}deg)`, // Slight random rotation
               }}
             />

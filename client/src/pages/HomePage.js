@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import CartDrawer from '../components/CartDrawer';
 import HeroSection from '../components/HeroSection';
 import SlidingTextSeparator from '../components/SlidingTextSeparator';
-import AboutSection from '../components/AboutSection';
-import ProductSection from '../components/ProductSection';
-import TestimonialsSection from '../components/TestimonialsSection';
 import Footer from '../components/Footer';
 import Navigation from '../components/Navigation';
-import AnimatedBallsComponent from '../components/balls';
 import FloatingLogo from '../components/FloatingLogo';
-import AnimatedSectionTitle from '../components/AnimatedSectionTitle';
 
+// Replace direct imports with lazy imports for heavy components
+const AboutSection = lazy(() => import('../components/AboutSection'));
+const ProductSection = lazy(() => import('../components/ProductSection'));
+const TestimonialsSection = lazy(() => import('../components/TestimonialsSection'));
+const AnimatedBallsComponent = lazy(() => import('../components/balls'));
+const AnimatedSectionTitle = lazy(() => import('../components/AnimatedSectionTitle'));
 
 const HomePage = () => {
   // State for products from API
@@ -103,24 +104,27 @@ const HomePage = () => {
         <CartDrawer />
         <main className="flex-1 m-0 p-0 flex flex-col">
           <div className="section-container" id="hero">
-            <HeroSection />
-            
+            <Suspense fallback={<div>Loading...</div>}>
+              <HeroSection />
+            </Suspense>
           </div>
           
-          
-          <AnimatedSectionTitle title="ABOUT US" height="200vh" />
-          <SlidingTextSeparator text="ABOUT US" />
-          <div className="section-container -mt-1" id="about">  
+          <Suspense fallback={<div>Loading...</div>}>
+            <AnimatedSectionTitle title="ABOUT US" height="200vh" />
+            <SlidingTextSeparator text="ABOUT US" />
             <AboutSection />
-          </div>
+          </Suspense>
           <AnimatedSectionTitle title="OUR PARTNERS" height="200vh" />  
           <div className="section-container my-8">
-            <AnimatedBallsComponent />
-
+            <Suspense fallback={<div>Loading...</div>}>
+              <AnimatedBallsComponent />
+            </Suspense>
           </div>
           <SlidingTextSeparator text="BEYOUND" />
 
-          <AnimatedSectionTitle title="PRODUCTS" height="200vh" />
+          <Suspense fallback={<div>Loading...</div>}>
+            <AnimatedSectionTitle title="PRODUCTS" height="200vh" />
+          </Suspense>
           
           {/* Scroll Reveal Section */}
          
@@ -148,25 +152,29 @@ const HomePage = () => {
                 className="section-container py-16 sm:py-20 lg:py-24 -mt-1"
                 id={`products-${product.name.toLowerCase()}`}
               >
-                <ProductSection 
-                  product={product} 
-                  index={index}
-                />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ProductSection 
+                    product={product} 
+                    index={index}
+                  />
+                </Suspense>
               </div>
               {/* {index !== products.length - 1 && (
                 <SlidingTextSeparator text={product.name.toUpperCase()} />
               )} */}
             </React.Fragment>
           ))}
-           <AnimatedSectionTitle title="TESTIMONIALS" height="300vh" />  
-          <SlidingTextSeparator text="TESTIMONIALS" />
-          {/* Testimonials Section */}
-          <div className="section-container" id="testimonials">
-            <TestimonialsSection />
-          </div>
+           <Suspense fallback={<div>Loading...</div>}>
+             <AnimatedSectionTitle title="TESTIMONIALS" height="300vh" />  
+             <SlidingTextSeparator text="TESTIMONIALS" />
+             {/* Testimonials Section */}
+             <TestimonialsSection />
+           </Suspense>
         </main>
       </div>
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

@@ -97,7 +97,7 @@ const Navigation = () => {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <img src={logo} alt="Beyound Logo" className="h-8 w-auto sm:h-12" />
+                  <img src={logo} alt="Beyound Logo" className="h-8 sm:h-12 w-auto" style={{ objectFit: 'contain', aspectRatio: '1.42' }} />
                   <span 
                     className="mx-0 select-none"
                     style={{
