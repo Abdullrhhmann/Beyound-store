@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Users, Leaf, Target, Star, Award, Globe, BookOpen, AlertTriangle } from 'lucide-react';
-import ceoImage from '../assets/images/ceo.jpg';
-import gemyImage from '../assets/images/gemy.jpg';
+import ceoImage from '../assets/images/ceo.webp';
+import gemyImage from '../assets/images/gemy.webp';
 
 const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
 

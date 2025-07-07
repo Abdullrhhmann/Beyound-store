@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
-import quarterZipperImg from '../assets/product-images/quarterzibber-thumpnail.jpg';
-import pantsImg from '../assets/product-images/pants-thumpnail.jpg';
-import shirtImg from '../assets/product-images/shirt-thumpnail.jpg';
+import quarterZipperImg from '../assets/product-images/quarterzibber-thumpnail.webp';
+import pantsImg from '../assets/product-images/pants-thumpnail.webp';
+import shirtImg from '../assets/product-images/shirt-thumpnail.webp';
 
 const CartDrawer = () => {
   const { items, isCartOpen, setCartOpen, totalPrice, updateQuantity, removeFromCart, clearCart } = useCart();

@@ -213,19 +213,19 @@ class BallSimulation {
 
         // PNG Logo URLs (REPLACE THESE WITH YOUR ACTUAL PNG FILES)
         const logos = [
-            require('../assets/partners-images/1.png'),
-            require('../assets/partners-images/2.png'),
-            require('../assets/partners-images/3.png'),
-            require('../assets/partners-images/4.PNG'),
-            require('../assets/partners-images/5.png'),
-            require('../assets/partners-images/6.png'),
-            require('../assets/partners-images/7.png'),
-            require('../assets/partners-images/8.png'),
-            require('../assets/partners-images/9.png'),
-            require('../assets/partners-images/10.png'),
-            require('../assets/partners-images/11.png'),
-            require('../assets/partners-images/12.png'),
-            require('../assets/partners-images/13.png'),
+            require('../assets/partners-images/1.webp'),
+            require('../assets/partners-images/2.webp'),
+            require('../assets/partners-images/3.webp'),
+            require('../assets/partners-images/4.webp'),
+            require('../assets/partners-images/5.webp'),
+            require('../assets/partners-images/6.webp'),
+            require('../assets/partners-images/7.webp'),
+            require('../assets/partners-images/8.webp'),
+            require('../assets/partners-images/9.webp'),
+            require('../assets/partners-images/10.webp'),
+            require('../assets/partners-images/11.webp'),
+            require('../assets/partners-images/12.webp'),
+            require('../assets/partners-images/13.webp'),
         ];
 
         // Reduce ball count and size for better performance

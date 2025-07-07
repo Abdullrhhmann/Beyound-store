@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { ArrowLeft, CreditCard, Truck } from 'lucide-react';
-import quarterZipperImg from '../assets/product-images/quarterzibber-thumpnail.jpg';
-import pantsImg from '../assets/product-images/pants-thumpnail.jpg';
-import shirtImg from '../assets/product-images/shirt-thumpnail.jpg';
-import buLogo from '../assets/logos/BU.png';
-import enactusLogo from '../assets/logos/Enactus-logo-black.png';
+import quarterZipperImg from '../assets/product-images/quarterzibber-thumpnail.webp';
+import pantsImg from '../assets/product-images/pants-thumpnail.webp';
+import shirtImg from '../assets/product-images/shirt-thumpnail.webp';
+import buLogo from '../assets/logos/BU.webp';
+import enactusLogo from '../assets/logos/Enactus-logo-black.webp';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();

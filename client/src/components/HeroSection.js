@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import heroBg from '../assets/images/HEROIMAGE.jpg';
-import heroBgMobile from '../assets/images/heroimage-mobile.jpg';
-import logo from '../assets/logos/logo.png';
+import heroBg from '../assets/images/HEROIMAGE.webp';
+import heroBgMobile from '../assets/images/heroimage-mobile.webp';
+import logo from '../assets/logos/logo.webp';
 
 const HeroSection = () => {
   const videoRef = useRef(null);

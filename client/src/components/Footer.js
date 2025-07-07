@@ -1,6 +1,6 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
-import logo from '../assets/logos/logo.png';
+import logo from '../assets/logos/logo.webp';
 
 const blobFloat1 = {
   animation: 'footerBlobFloat1 10s ease-in-out infinite alternate',

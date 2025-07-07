@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Menu, X, Home, Package, Users, Phone, Settings, Star } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logos/BU.png';
-import enactusLogo from '../assets/logos/Enactus-logo-black.png';
+import logo from '../assets/logos/BU.webp';
+import enactusLogo from '../assets/logos/Enactus-logo-black.webp';
 
 const Navigation = () => {
   const { totalItems, setCartOpen, addTrigger } = useCart();
