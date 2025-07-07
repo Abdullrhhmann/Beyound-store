@@ -119,6 +119,10 @@ const Footer = () => {
           alt="Company Logo"
           className="w-64 sm:w-80 md:w-96 h-56 sm:h-64 md:h-80 object-contain mt-8 mb-0 drop-shadow-xl mx-auto"
           draggable="false"
+          width="800"
+          height="600"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </footer>

@@ -75,6 +75,12 @@ const HeroSection = () => {
             alt="BE-YOUnd Logo" 
             className="mx-auto max-w-md md:max-w-2xl lg:max-w-3xl w-full h-auto drop-shadow-xl"
             style={{ minHeight: '180px' }}
+            width="380"
+            height="285"
+            srcSet={`${logo} 380w, ${logo} 800w`}
+            sizes="(max-width: 768px) 380px, 800px"
+            loading="eager"
+            decoding="async"
           />
         </motion.div>
 

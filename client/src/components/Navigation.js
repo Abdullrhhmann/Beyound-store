@@ -97,7 +97,7 @@ const Navigation = () => {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <img src={logo} alt="Beyound Logo" className="h-8 sm:h-12 w-auto" style={{ objectFit: 'contain', aspectRatio: '1.42' }} />
+                  <img src={logo} alt="Beyound Logo" className="h-8 sm:h-12 w-auto" style={{ objectFit: 'contain', aspectRatio: '1.42' }} width="45" height="32" loading="eager" decoding="async" />
                   <span 
                     className="mx-0 select-none"
                     style={{
@@ -110,7 +110,7 @@ const Navigation = () => {
                   >
                     x
                   </span>
-                  <img src={enactusLogo} alt="Enactus Logo" className="h-10 w-auto sm:h-16 drop-shadow-[0_8px_32px_rgba(0,0,0,0.95)] drop-shadow-[0_0px_32px_rgba(255,255,255,0.8)] drop-shadow-[0_2px_48px_rgba(0,0,0,0.95)]" />
+                  <img src={enactusLogo} alt="Enactus Logo" className="h-10 w-auto sm:h-16 drop-shadow-[0_8px_32px_rgba(0,0,0,0.95)] drop-shadow-[0_0px_32px_rgba(255,255,255,0.8)] drop-shadow-[0_2px_48px_rgba(0,0,0,0.95)]" width="40" height="40" decoding="async" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -308,7 +308,7 @@ const Navigation = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="backdrop-blur-md shadow-[32px_12px_96px_32px_rgba(0,0,0,1)] -z-10" />
-            <img src={logo} alt="Beyound Logo" className="h-10 w-auto sm:h-16" />
+            <img src={logo} alt="Beyound Logo" className="h-10 w-auto sm:h-16" width="64" height="48" decoding="async" />
             <span 
               className="mx-0 select-none"
               style={{
@@ -321,7 +321,7 @@ const Navigation = () => {
             >
               x
             </span>
-            <img src={enactusLogo} alt="Enactus Logo" className="h-12 w-auto sm:h-20 drop-shadow-[0_12px_48px_rgba(0,0,0,1)] drop-shadow-[0_0px_48px_rgba(255,255,255,0.9)] drop-shadow-[0_4px_64px_rgba(0,0,0,1)]" />
+            <img src={enactusLogo} alt="Enactus Logo" className="h-12 w-auto sm:h-20 drop-shadow-[0_12px_48px_rgba(0,0,0,1)] drop-shadow-[0_0px_48px_rgba(255,255,255,0.9)] drop-shadow-[0_4px_64px_rgba(0,0,0,1)]" width="80" height="60" decoding="async" />
           </motion.div>
         )}
       </AnimatePresence>
