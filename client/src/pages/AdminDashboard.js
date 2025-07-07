@@ -37,7 +37,7 @@ const AdminDashboard = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/orders');
+      const response = await fetch('https://beyound.up.railway.app/api/orders');
       const data = await response.json();
       const ordersArray = data.orders || (Array.isArray(data) ? data : []);
       setOrders(ordersArray);
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/products');
+      const response = await fetch('https://beyound.up.railway.app/api/products');
       const data = await response.json();
       const productsArray = data.products || (Array.isArray(data) ? data : []);
       setProducts(productsArray);
@@ -63,7 +63,7 @@ const AdminDashboard = () => {
 
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+      const response = await fetch(`https://beyound.up.railway.app/api/orders/${orderId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+      const response = await fetch(`https://beyound.up.railway.app/api/orders/${orderId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -127,7 +127,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/orders', {
+      const response = await fetch('https://beyound.up.railway.app/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newOrder)
@@ -156,7 +156,7 @@ const AdminDashboard = () => {
 
   const updateProductPrice = async (productId, newPrice) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${productId}`, {
+      const response = await fetch(`https://beyound.up.railway.app/api/products/${productId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ price: parseFloat(newPrice) })
