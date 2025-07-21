@@ -27,11 +27,12 @@ export const PlaceholdersAndVanishInput = ({
 
   useEffect(() => {
     const draw = (ctx, frameCount) => {
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      newDataRef.current.forEach((t) => {
-        t.draw(ctx, frameCount);
-      });
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        newDataRef.current.forEach((t) => {
+            t.draw(ctx, frameCount);
+        });
     };
+
     const canvas = canvasRef.current;
     if (canvas) {
       const ctx = canvas.getContext("2d");

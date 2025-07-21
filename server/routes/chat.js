@@ -7,7 +7,7 @@ const { getWebsiteContext } = require('../utils/context');
 router.post('/', async (req, res) => {
   try {
     const { message } = req.body;
-    const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+    const OPENROUTER_API_KEY = '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';
     const websiteContext = await getWebsiteContext();
     const fullMessage = `${websiteContext}\n\nUser question: ${message}`;
 
