@@ -7,11 +7,21 @@ const { getWebsiteContext } = require('../utils/context');
 router.post('/', async (req, res) => {
   try {
     const { message } = req.body;
-    const OPENROUTER_API_KEY = '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';
+    if (!message || typeof message !== 'string') {
+      return res.status(400).json({ message: 'Message is required and must be a string.' });
+    }
+
+    const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+    const OPENROUTER_API_URL = process.env.OPENROUTER_API_URL;
+
+    if (!OPENROUTER_API_KEY || !OPENROUTER_API_URL) {
+      return res.status(500).json({ message: 'Server misconfiguration: missing OpenRouter API key or URL.' });
+    }
+
     const websiteContext = await getWebsiteContext();
     const fullMessage = `${websiteContext}\n\nUser question: ${message}`;
 
-    const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await axios.post(OPENROUTER_API_URL, {
       model: 'deepseek/deepseek-chat-v3-0324:free',
       messages: [
         {
@@ -26,14 +36,25 @@ router.post('/', async (req, res) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`
+        'Authorization': `Bearer ${OPENROUTER_API_KEY}`
       }
     });
+
+    if (
+      !response.data ||
+      !response.data.choices ||
+      !Array.isArray(response.data.choices) ||
+      !response.data.choices[0] ||
+      !response.data.choices[0].message ||
+      typeof response.data.choices[0].message.content !== 'string'
+    ) {
+      throw new Error('Unexpected response format from OpenRouter API');
+    }
 
     res.json({ reply: response.data.choices[0].message.content });
   } catch (error) {
     console.error('Error with OpenRouter API:', error.response ? JSON.stringify(error.response.data, null, 2) : error.message);
-    res.status(500).json({ message: 'Error processing your request' });
+    res.status(500).json({ message: 'Error processing your request', error: error.message });
   }
 });
 

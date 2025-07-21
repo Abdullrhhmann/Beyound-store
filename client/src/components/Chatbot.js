@@ -33,7 +33,7 @@ const Chatbot = () => {
     setIsTyping(true);
 
     try {
-      const response = await fetch("https://beyound.up.railway.app/api/chat", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

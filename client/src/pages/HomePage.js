@@ -21,11 +21,11 @@ const HomePage = () => {
 
   // Fetch products from backend API
   useEffect(() => {
-    const API_URL = 'https://beyound.up.railway.app' || 'http://localhost:5000';
+    const API_URL = process.env.REACT_APP_API_URL;
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const url = `${API_URL}/api/products`;
+        const url = `${API_URL}/products`;
         console.log('Fetching products from:', url);
         const response = await fetch(url);
         console.log('Response status:', response.status);
