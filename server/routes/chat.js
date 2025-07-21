@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`
+        'Authorization': `Bearer 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`
       }
     });
 
