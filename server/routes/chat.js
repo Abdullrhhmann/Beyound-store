@@ -7,7 +7,7 @@ const { getWebsiteContext } = require('../utils/context');
 router.post('/', async (req, res) => {
   try {
     const { message } = req.body;
-    const OPENROUTER_API_KEY = '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';
+    const OPENROUTER_API_KEY = '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';
     const websiteContext = await getWebsiteContext();
     const fullMessage = `${websiteContext}\n\nUser question: ${message}`;
 
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENROUTER_API_KEY}`
+        'Authorization': `Bearer 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`
       }
     });
 
