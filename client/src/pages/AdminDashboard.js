@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BackgroundBeams from '../components/BackgroundBeams';
 
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'admin123';
+
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('orders');
   const [orders, setOrders] = useState([]);
@@ -10,6 +13,12 @@ const AdminDashboard = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [showCreateOrderModal, setShowCreateOrderModal] = useState(false);
+
+  // Auth state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   // New order form state
   const [newOrder, setNewOrder] = useState({
@@ -216,6 +225,49 @@ const AdminDashboard = () => {
       default: return 'bg-gray-600';
     }
   };
+
+  // Login handler
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (loginUsername === ADMIN_USERNAME && loginPassword === ADMIN_PASSWORD) {
+      setIsAuthenticated(true);
+      setLoginError('');
+    } else {
+      setLoginError('Invalid username or password');
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <form onSubmit={handleLogin} className="bg-gray-800 p-8 rounded-lg shadow-lg flex flex-col w-full max-w-sm">
+          <h2 className="text-2xl font-bold mb-6 text-white text-center">Admin Login</h2>
+          <input
+            type="text"
+            placeholder="Username"
+            value={loginUsername}
+            onChange={e => setLoginUsername(e.target.value)}
+            className="mb-4 px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            autoFocus
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={loginPassword}
+            onChange={e => setLoginPassword(e.target.value)}
+            className="mb-4 px-4 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {loginError && <div className="text-red-500 mb-4 text-center">{loginError}</div>}
+          <button
+            type="submit"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   if (loading) {
     return (

@@ -22,18 +22,16 @@ export const PlaceholdersAndVanishInput = ({
 
   const canvasRef = useRef(null);
   const newDataRef = useRef([]);
-  const inputContainerRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   const [animating, setAnimating] = useState(false);
 
-  const draw = (ctx, frameCount) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    newDataRef.current.forEach((t) => {
-      t.draw(ctx, frameCount);
-    });
-  };
-
   useEffect(() => {
+    const draw = (ctx, frameCount) => {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      newDataRef.current.forEach((t) => {
+        t.draw(ctx, frameCount);
+      });
+    };
     const canvas = canvasRef.current;
     if (canvas) {
       const ctx = canvas.getContext("2d");
@@ -49,7 +47,7 @@ export const PlaceholdersAndVanishInput = ({
         window.cancelAnimationFrame(animationFrameId);
       };
     }
-  }, [draw]);
+  }, []);
 
   const getSizingData = (value) => {
     const canvas = document.createElement("canvas");
@@ -97,14 +95,12 @@ export const PlaceholdersAndVanishInput = ({
 
     const textData = ctx.getImageData(0, 0, width, height);
 
-    let idx = 0;
     newDataRef.current = [];
     for (let i = 0; i < textData.data.length; i += 4) {
       if (textData.data[i + 3] > 0) {
         const x = (i / 4) % width;
         const y = Math.floor(i / 4 / width);
         newDataRef.current.push(new Particle(x, y, textData.data[i], textData.data[i + 1], textData.data[i + 2]));
-        idx++;
       }
     }
 
