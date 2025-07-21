@@ -183,6 +183,8 @@ const AboutSection = () => {
             </motion.div>
           )}
         </div>
+
+
         {/* Our Need Card - full width and centered on desktop */}
         {isMobile ? (
           <div className="bg-gradient-to-br from-red-900/80 via-black/80 to-gray-900/80 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-3xl shadow-black/60 flex flex-col mb-16 md:mb-24">

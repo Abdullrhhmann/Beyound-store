@@ -49,12 +49,14 @@ const productRoutes = require('./routes/products');
 const testimonialRoutes = require('./routes/testimonials');
 const orderRoutes = require('./routes/orders');
 const userRoutes = require('./routes/users');
+const chatRoutes = require('./routes/chat');
 
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

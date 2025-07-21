@@ -7,6 +7,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
 import AdminDashboard from './pages/AdminDashboard';
 import Preloader from './components/Preloader';
+import Chatbot from './components/Chatbot';
 
 function App() {
   // Preloader total duration (ms)
@@ -41,6 +42,7 @@ function App() {
                   <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
                   <Route path="/admin" element={<AdminDashboard />} />
                 </Routes>
+                <Chatbot />
               </div>
             </CartProvider>
           </ScrollProvider>
