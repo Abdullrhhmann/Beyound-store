@@ -14,9 +14,14 @@ console.log(process.env.OPENROUTER_API_KEY);
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: [
-    process.env.CLIENT_URL,
-  ].filter(Boolean),
+  origin: (origin, callback) => {
+    const allowedOrigins = process.env.CLIENT_URL.split(',').map(url => url.trim());
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
