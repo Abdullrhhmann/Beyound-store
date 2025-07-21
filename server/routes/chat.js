@@ -2,15 +2,14 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 require('dotenv').config();
-const { getProductContext, getWebsiteContext } = require('../utils/context');
+const { getWebsiteContext } = require('../utils/context');
 
 router.post('/', async (req, res) => {
   try {
     const { message } = req.body;
-    
-    const productContext = await getProductContext();
+    const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
     const websiteContext = await getWebsiteContext();
-    const fullMessage = `${websiteContext}\n\n${productContext}\n\nUser question: ${message}`;
+    const fullMessage = `${websiteContext}\n\nUser question: ${message}`;
 
     const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
       model: 'deepseek/deepseek-chat-v3-0324:free',
@@ -27,7 +26,7 @@ router.post('/', async (req, res) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`
+        'Authorization': `Bearer ${OPENROUTER_API_KEY}`
       }
     });
 

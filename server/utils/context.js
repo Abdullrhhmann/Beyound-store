@@ -1,18 +1,4 @@
-const fs = require('fs').promises;
 const path = require('path');
-
-async function getProductContext() {
-  try {
-    const data = await fs.readFile(path.join(__dirname, '../../products.json'), 'utf8');
-    let jsonString = data.substring(data.indexOf('{'), data.lastIndexOf('}') + 1);
-    jsonString = jsonString.replace(/(\r\n|\n|\r)/gm, " ");
-    const products = JSON.parse(jsonString).products;
-    return `Here are the products available: ${JSON.stringify(products)}`;
-  } catch (error) {
-    console.error('Error reading or parsing products.json:', error);
-    return 'Could not load product information.';
-  }
-}
 
 async function getWebsiteContext() {
   const websiteInfo = `
@@ -22,4 +8,4 @@ Contact us: Reach out! We’re always here to listen, connect, andgrow.+list the
   return websiteInfo;
 }
 
-module.exports = { getProductContext, getWebsiteContext }; 
+module.exports = { getWebsiteContext }; 
