@@ -22,6 +22,15 @@ const HomePage = () => {
   // Fetch products from backend API
   useEffect(() => {
     const API_URL = process.env.REACT_APP_API_URL;
+    if (!API_URL) {
+      console.error(
+        "REACT_APP_API_URL is not set! Please check your environment variables."
+      );
+      setError("API configuration error. Please contact support.");
+      setLoading(false);
+      return;
+    }
+
     const fetchProducts = async () => {
       try {
         setLoading(true);
