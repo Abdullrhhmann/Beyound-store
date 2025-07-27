@@ -4,7 +4,54 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { useTranslation } from 'react-i18next';
-import testimonialData from '../data/testimonials';
+
+const testimonialData = [
+  {
+    id: 1,
+    name: "Sarah Ahmed",
+    location: "Cairo, Egypt",
+    rating: 5,
+    comment: "The Quarter Zipper jacket has been a game-changer for me. As someone who values both style and comfort, I couldn't be happier. The premium materials and thoughtful design make it perfect for both casual outings and semi-formal occasions. The zipper is smooth and durable - exactly what I was looking for!",
+    productPurchased: "Quarter Zipper",
+    date: "2025-06-15"
+  },
+  {
+    id: 2,
+    name: "Mohammed Karim",
+    location: "Alexandria, Egypt",
+    rating: 5,
+    comment: "These pants are the most comfortable I've ever worn! The premium fabric really makes a difference, and the waistband is perfectly designed. I've bought multiple pairs in different sizes for my family. The quality is consistent, and the price is reasonable for the value you get.",
+    productPurchased: "Pants",
+    date: "2025-06-20"
+  },
+  {
+    id: 3,
+    name: "Nour El-Din",
+    location: "6th of October City",
+    rating: 4,
+    comment: "The shirt is fantastic! The breathable cotton material is perfect for our weather, and it's so easy to iron. I especially appreciate how it looks great in both casual and formal settings. Would love to see more color options though!",
+    productPurchased: "Shirt",
+    date: "2025-07-01"
+  },
+  {
+    id: 4,
+    name: "Fatima Hassan",
+    location: "Giza, Egypt",
+    rating: 5,
+    comment: "I bought the Quarter Zipper for my father who has limited mobility, and it's been perfect! The zipper design makes it easy to put on and take off, while still looking stylish. The durability is impressive - it still looks new after regular use.",
+    productPurchased: "Quarter Zipper",
+    date: "2025-07-10"
+  },
+  {
+    id: 5,
+    name: "Youssef Mahmoud",
+    location: "Heliopolis, Cairo",
+    rating: 5,
+    comment: "The pants are exactly what I needed for daily wear. The fabric quality is excellent, and they maintain their shape even after multiple washes. The size options are perfect, and the fit is true to size. Definitely worth every pound!",
+    productPurchased: "Pants",
+    date: "2025-07-12"
+  }
+];
 
 // TestimonialsSection component with 3D card flip animations
 const TestimonialsSection = () => {
