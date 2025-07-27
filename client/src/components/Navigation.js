@@ -5,6 +5,7 @@ import { useCart } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logos/BU.webp';
 import enactusLogo from '../assets/logos/Enactus-logo-black.webp';
+import { useTranslation } from 'react-i18next';
 
 const Navigation = () => {
   const { totalItems, setCartOpen, addTrigger } = useCart();
@@ -14,6 +15,12 @@ const Navigation = () => {
 
   // Hero section in view detection
   const [heroInView, setHeroInView] = useState(true);
+
+  const { i18n, t } = useTranslation();
+  
+  useEffect(() => {
+    document.body.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
+  }, [i18n.language]);
 
   useEffect(() => {
     // Find the hero section by id
@@ -47,6 +54,10 @@ const Navigation = () => {
     }
   }, [addTrigger]);
 
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   const scrollToSection = (sectionId) => {
     const el = document.getElementById(sectionId);
     if (el) {
@@ -56,22 +67,22 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { name: 'Home', section: 'hero', icon: Home },
-    { name: 'Products', section: 'products', icon: Package },
-    { name: 'About', section: 'about', icon: Users },
-    { name: 'Testimonials', section: 'testimonials', icon: Star },
-    { name: 'Contact', section: 'footer', icon: Phone },
+    { name: t('nav.home'), section: 'hero', icon: Home },
+    { name: t('nav.products'), section: 'products', icon: Package },
+    { name: t('nav.about'), section: 'about', icon: Users },
+    { name: t('nav.testimonials'), section: 'TESTIMONIALS', icon: Star },
+    { name: t('nav.contact'), section: 'footer', icon: Phone },
   ];
 
   return (
     <>
       {/* Desktop Navigation */}
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-4 left-4 right-4 z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-black/80 shadow-lg backdrop-blur-md' 
+            ? 'bg-black/40 shadow-xl backdrop-blur-xl border border-white/10' 
             : 'bg-transparent'
-        }`}
+        } rounded-2xl`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
@@ -130,7 +141,7 @@ const Navigation = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Settings className="h-4 w-4" />
-                <span className="hidden sm:inline">Login</span>
+                <span className="hidden sm:inline">{t('nav.login')}</span>
               </motion.button>
             </Link>
 
@@ -275,7 +286,7 @@ const Navigation = () => {
                     <ShoppingCart className="h-5 w-5 text-white/80" />
                   </motion.div>
                   <span className="font-medium text-white">
-                    Cart {totalItems > 0 && `(${totalItems})`}
+                    {t('nav.cart')} {totalItems > 0 && `(${totalItems})`}
                   </span>
                 </motion.button>
               </div>
@@ -312,6 +323,42 @@ const Navigation = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Fixed Language Switcher */}
+      <motion.button
+        className="fixed md:right-6 right-2 md:top-1/2 bottom-24 md:-translate-y-1/2 z-[60] md:w-12 w-10 md:h-20 h-16 rounded-full cursor-pointer overflow-hidden bg-black/60 backdrop-blur-sm border border-white/10 shadow-lg"
+        onClick={() => changeLanguage(i18n.language === 'en' ? 'ar' : 'en')}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <motion.div
+          className="absolute left-1 right-1 top-1 md:h-[calc(50%-4px)] h-[calc(50%-3px)] rounded-full bg-white shadow-lg flex items-center justify-center"
+          animate={{
+            y: i18n.language === 'en' ? '0%' : '100%'
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 30
+          }}
+        >
+          <span className="text-black md:text-sm text-xs font-medium">
+            {i18n.language === 'en' ? 'E' : 'AR'}
+          </span>
+        </motion.div>
+        <div className="absolute inset-0 flex flex-col items-center justify-between md:py-3 py-2 pointer-events-none">
+          <span className={`text-white md:text-sm text-xs font-medium transition-opacity duration-200 ${
+            i18n.language === 'en' ? 'opacity-0' : 'opacity-100'
+          }`}>
+            E
+          </span>
+          <span className={`text-white md:text-sm text-xs font-medium transition-opacity duration-200 ${
+            i18n.language === 'en' ? 'opacity-100' : 'opacity-0'
+          }`}>
+            AR
+          </span>
+        </div>
+      </motion.button>
     </>
   );
 };

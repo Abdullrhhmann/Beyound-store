@@ -2,8 +2,10 @@ import React, { useRef as reactUseRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
+import { useTranslation } from 'react-i18next';
 
 const ProductSection = ({ product, index }) => {
+  const { t } = useTranslation();
   const ref = reactUseRef(null);
   const isInView = useInView(ref, { once: true, margin: "-20px", amount: 0.1 });
   const { addToCart, totalItems } = useCart();
@@ -207,7 +209,7 @@ const ProductSection = ({ product, index }) => {
 
               {/* Size Selector */}
               <div className="mb-1.5 sm:mb-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
-                <span className="font-semibold text-xs sm:text-base text-white">Size:</span>
+                <span className="font-semibold text-xs sm:text-base text-white">{t('products.size')}:</span>
                 {['S', 'M', 'L'].map(size => (
                   <button
                     key={size}
@@ -225,7 +227,7 @@ const ProductSection = ({ product, index }) => {
                 whileTap={{ scale: 0.97 }}
                 className="mt-1 sm:mt-3 md:mt-4 w-full py-2.5 sm:py-3.5 md:py-4 rounded-lg sm:rounded-xl bg-yellow-400 text-black font-bold text-sm sm:text-lg md:text-xl shadow-lg hover:bg-yellow-300 hover:text-black transition-colors duration-200 border-2 border-yellow-400"
               >
-                Add to Cart
+                {t('products.addToCart')}
               </motion.button>
             </div>
           </motion.div>

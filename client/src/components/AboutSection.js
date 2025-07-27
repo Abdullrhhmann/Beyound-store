@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Heart, Users, Leaf, Target, Star, Award, Globe, BookOpen, AlertTriangle } from 'lucide-react';
 import ceoImage from '../assets/images/ceo.webp';
 import gemyImage from '../assets/images/gemy.webp';
+import { useTranslation } from 'react-i18next';
 
 // Animation variants (centralized for clarity)
 const getSlideInFromLeft = (duration) => ({
@@ -33,6 +34,7 @@ const getFadeInUp = (duration) => ({
 });
 
 const AboutSection = () => {
+  const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -43,32 +45,32 @@ const AboutSection = () => {
   }, []);
 
   const stats = [
-    { number: "100%", label: "Adaptive Design", icon: <Target className="w-6 h-6" /> },
-    { number: "0%", label: "Textile Waste", icon: <Leaf className="w-6 h-6" /> },
-    { number: "∞", label: "Empowerment", icon: <Heart className="w-6 h-6" /> },
-    { number: "100%", label: "Innovation", icon: <Users className="w-6 h-6" /> },
+    { number: "100%", label: t('about.stats.adaptiveDesign'), icon: <Target className="w-6 h-6" /> },
+    { number: "0%", label: t('about.stats.textileWaste'), icon: <Leaf className="w-6 h-6" /> },
+    { number: "∞", label: t('about.stats.empowerment'), icon: <Heart className="w-6 h-6" /> },
+    { number: "100%", label: t('about.stats.innovation'), icon: <Users className="w-6 h-6" /> },
   ];
 
   const values = [
     {
       icon: <Heart className="w-12 h-12 text-red-500" />,
-      title: "Empowerment",
-      description: "Every stitch empowers individuals with disabilities to dress with dignity, comfort, and style."
+      title: t('about.values.empowerment.title'),
+      description: t('about.values.empowerment.description')
     },
     {
       icon: <Leaf className="w-12 h-12 text-green-500" />,
-      title: "Sustainability",
-      description: "We create adaptive clothing from repurposed textile waste, reducing environmental impact."
+      title: t('about.values.sustainability.title'),
+      description: t('about.values.sustainability.description')
     },
     {
       icon: <Users className="w-12 h-12 text-blue-500" />,
-      title: "Community",
-      description: "Crafted by strong, underprivileged women trained to lead production with pride and purpose."
+      title: t('about.values.community.title'),
+      description: t('about.values.community.description')
     },
     {
       icon: <Target className="w-12 h-12 text-purple-500" />,
-      title: "Inclusion",
-      description: "Fashion that adapts to needs, not the other way around. Everyone deserves to be seen."
+      title: t('about.values.inclusion.title'),
+      description: t('about.values.inclusion.description')
     }
   ];
 
@@ -106,16 +108,16 @@ const AboutSection = () => {
               <div>
                 <div className="flex items-center mb-4">
                   <BookOpen className="w-6 h-6 md:w-8 md:h-8 text-blue-400 mr-2 md:mr-3" />
-                  <h3 className="text-2xl md:text-3xl font-bold text-white">Our Story</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white">{t('about.story.title')}</h3>
                 </div>
                 <p className="text-base md:text-lg text-gray-100 mb-4">
-                  Our story began with a moment of clarity when we realized that for millions, clothing wasn't a source of confidence, but of daily struggle. <span className="font-semibold text-white">We recognized that adaptive clothing was missing, and so were the voices it was meant to serve.</span>
+                  {t('about.story.p1')}
                 </p>
                 <p className="text-base md:text-lg text-gray-100 mb-4">
-                  While tons of textile waste were being dumped into our environment, we launched our mission turning this problem into potential; <span className="font-semibold text-white">creating adaptive clothes from upcycled materials, sewn by strong, underprivileged women.</span>
+                  {t('about.story.p2')}
                 </p>
                 <p className="text-base md:text-lg text-gray-100 italic">
-                  For those who need more than just clothes; <span className="font-semibold text-white">they need to be seen.</span>
+                  {t('about.story.p3')}
                 </p>
               </div>
             </div>
@@ -131,16 +133,16 @@ const AboutSection = () => {
               <div>
                 <div className="flex items-center mb-4">
                   <BookOpen className="w-6 h-6 md:w-8 md:h-8 text-blue-400 mr-2 md:mr-3" />
-                  <h3 className="text-2xl md:text-3xl font-bold text-white">Our Story</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white">{t('about.story.title')}</h3>
                 </div>
                 <p className="text-base md:text-lg text-gray-100 mb-4">
-                  Our story began with a moment of clarity when we realized that for millions, clothing wasn't a source of confidence, but of daily struggle. <span className="font-semibold text-white">We recognized that adaptive clothing was missing, and so were the voices it was meant to serve.</span>
+                  {t('about.story.p1')}
                 </p>
                 <p className="text-base md:text-lg text-gray-100 mb-4">
-                  While tons of textile waste were being dumped into our environment, we launched our mission turning this problem into potential; <span className="font-semibold text-white">creating adaptive clothes from upcycled materials, sewn by strong, underprivileged women.</span>
+                  {t('about.story.p2')}
                 </p>
                 <p className="text-base md:text-lg text-gray-100 italic">
-                  For those who need more than just clothes; <span className="font-semibold text-white">they need to be seen.</span>
+                  {t('about.story.p3')}
                 </p>
               </div>
             </motion.div>
@@ -190,13 +192,13 @@ const AboutSection = () => {
             <div>
               <div className="flex items-center mb-6 md:mb-10">
                 <AlertTriangle className="w-6 h-6 md:w-8 md:h-8 text-red-400 mr-2 md:mr-3" />
-                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white">Our Need</h3>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white">{t('about.need.title')}</h3>
               </div>
               <p className="text-base md:text-lg text-gray-100 mb-4">
-                <span className="font-semibold text-white">Getting dressed shouldn't be a daily battle;</span> but for people with mobility, sensory, or physical challenges, it often is.
+                <span className="font-semibold text-white">{t('about.need.p1')}</span>
               </p>
               <p className="text-base md:text-lg text-gray-100">
-                Traditional fashion <span className="font-semibold text-white">excludes their needs</span>, adding frustration to already difficult routines.
+                <span className="font-semibold text-white">{t('about.need.p2')}</span>
               </p>
             </div>
           </div>
@@ -212,13 +214,13 @@ const AboutSection = () => {
             <div>
               <div className="flex items-center mb-8">
                 <AlertTriangle className="w-8 h-8 text-red-400 mr-3" />
-                <h3 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white">Our Need</h3>
+                <h3 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white">{t('about.need.title')}</h3>
               </div>
               <p className="text-lg md:text-xl text-gray-100 mb-4">
-                <span className="font-semibold text-white">Getting dressed shouldn't be a daily battle;</span> but for people with mobility, sensory, or physical challenges, it often is.
+                <span className="font-semibold text-white">{t('about.need.p1')}</span>
               </p>
               <p className="text-lg md:text-xl text-gray-100">
-                Traditional fashion <span className="font-semibold text-white">excludes their needs</span>, adding frustration to already difficult routines.
+                <span className="font-semibold text-white">{t('about.need.p2')}</span>
               </p>
             </div>
           </motion.div>
@@ -230,9 +232,9 @@ const AboutSection = () => {
             <div className="flex justify-center mb-6">
               <Globe className="w-12 h-12 md:w-16 md:h-16 text-white" />
             </div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6">Our Mission</h3>
-            <p className="text-lg md:text-xl lg:text-2xl leading-relaxed max-w-4xl mx-auto">To Empower. To Include. To <span className="font-bold">BEYOUND</span>.</p>
-            <p className="text-base md:text-lg text-gray-300 mt-4 md:mt-6 max-w-3xl mx-auto">We exist to empower individuals with disabilities by designing fashion that adapts to their needs, not the other way around. Our mission is rooted in sustainability, social inclusion, and community-driven innovation.</p>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6">{t('about.mission.title')}</h3>
+            <p className="text-lg md:text-xl lg:text-2xl leading-relaxed max-w-4xl mx-auto">{t('about.mission.subtitle')}</p>
+            <p className="text-base md:text-lg text-gray-300 mt-4 md:mt-6 max-w-3xl mx-auto">{t('about.mission.desc')}</p>
           </div>
         ) : (
           <motion.div 
@@ -253,9 +255,9 @@ const AboutSection = () => {
             >
               <Globe className="w-12 h-12 md:w-16 md:h-16 text-white" />
             </motion.div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6">Our Mission</h3>
-            <p className="text-lg md:text-xl lg:text-2xl leading-relaxed max-w-4xl mx-auto">To Empower. To Include. To <span className="font-bold">BEYOUND</span>.</p>
-            <p className="text-base md:text-lg text-gray-300 mt-4 md:mt-6 max-w-3xl mx-auto">We exist to empower individuals with disabilities by designing fashion that adapts to their needs, not the other way around. Our mission is rooted in sustainability, social inclusion, and community-driven innovation.</p>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6">{t('about.mission.title')}</h3>
+            <p className="text-lg md:text-xl lg:text-2xl leading-relaxed max-w-4xl mx-auto">{t('about.mission.subtitle')}</p>
+            <p className="text-base md:text-lg text-gray-300 mt-4 md:mt-6 max-w-3xl mx-auto">{t('about.mission.desc')}</p>
           </motion.div>
         )}
 
@@ -368,11 +370,9 @@ const AboutSection = () => {
             style={{ willChange: 'transform, opacity, filter' }}
           >
             <Award className="w-12 h-12 md:w-16 md:h-16 text-blue-500 mx-auto mb-3 md:mb-4" />
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4">
-              Our Solution
-            </h3>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4">{t('about.solution.title')}</h3>
             <p className="text-lg md:text-xl text-white">
-              We Created Clothes That Don't Just Fit, They Free.
+              {t('about.solution.subtitle')}
             </p>
           </motion.div>
           
@@ -390,20 +390,20 @@ const AboutSection = () => {
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
                   <span className="text-white font-bold text-sm md:text-base">1</span>
                 </div>
-                <h4 className="text-xl md:text-2xl font-bold text-white">Accessibility Features</h4>
+                <h4 className="text-xl md:text-2xl font-bold text-white">{t('about.solution.accessibility.title')}</h4>
               </div>
               <div className="space-y-3">
                 <div className="flex items-start space-x-3">
                   <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
-                  <p className="text-gray-100 text-sm md:text-base">Magnetic fastenings for easy dressing</p>
+                  <p className="text-gray-100 text-sm md:text-base">{t('about.solution.accessibility.p1')}</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
-                  <p className="text-gray-100 text-sm md:text-base">Side openings for accessibility</p>
+                  <p className="text-gray-100 text-sm md:text-base">{t('about.solution.accessibility.p2')}</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
-                  <p className="text-gray-100 text-sm md:text-base">Sensory-friendly fabrics</p>
+                  <p className="text-gray-100 text-sm md:text-base">{t('about.solution.accessibility.p3')}</p>
                 </div>
               </div>
             </motion.div>
@@ -421,20 +421,20 @@ const AboutSection = () => {
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-red-500 rounded-full flex items-center justify-center mr-3">
                   <span className="text-white font-bold text-sm md:text-base">2</span>
                 </div>
-                <h4 className="text-xl md:text-2xl font-bold text-white">Sustainable Impact</h4>
+                <h4 className="text-xl md:text-2xl font-bold text-white">{t('about.solution.sustainable.title')}</h4>
               </div>
               <div className="space-y-3">
                 <div className="flex items-start space-x-3">
                   <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
-                  <p className="text-gray-100 text-sm md:text-base">Made from repurposed textile waste</p>
+                  <p className="text-gray-100 text-sm md:text-base">{t('about.solution.sustainable.p1')}</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
-                  <p className="text-gray-100 text-sm md:text-base">Crafted by women from overlooked communities</p>
+                  <p className="text-gray-100 text-sm md:text-base">{t('about.solution.sustainable.p2')}</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
-                  <p className="text-gray-100 text-sm md:text-base">Without compromising style or identity</p>
+                  <p className="text-gray-100 text-sm md:text-base">{t('about.solution.sustainable.p3')}</p>
                 </div>
               </div>
             </motion.div>

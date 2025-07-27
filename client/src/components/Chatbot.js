@@ -2,13 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { PlaceholdersAndVanishInput } from "./placeholders-and-vanish-input";
 import { cn } from "../utils/cn";
 import chatbotIcon from "../assets/logos/chatboticon.png";
+import { useTranslation } from 'react-i18next';
 
 const Chatbot = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "Hello! How can I assist you today? I'm here to answer questions about the BEYOUND brand, our products, and our mission.",
+      text: t('chatbot.greeting'),
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -49,7 +51,7 @@ const Chatbot = () => {
     } catch (error) {
       const errorMessage = {
         sender: "bot",
-        text: "Sorry, I'm having trouble connecting. Please try again later.",
+        text: t('chatbot.error'),
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -71,10 +73,7 @@ const Chatbot = () => {
       {!isOpen && (
         <button
           onClick={toggleChat}
-          className="fixed bottom-5 right-5 z-50 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-red-600 text-white shadow-lg transition-transform hover:scale-110 animate-bounce"
-          style={{
-            animation: 'float 3s ease-in-out infinite'
-          }}
+          className="fixed bottom-5 right-5 z-50 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-red-600 text-white shadow-lg transition-transform hover:scale-110 animate-float"
           aria-label="Open chat"
         >
           <img 
@@ -165,17 +164,6 @@ const Chatbot = () => {
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-      `}</style>
     </>
   );
 };

@@ -108,8 +108,8 @@ const HomePage = () => {
             <div id="about"></div>
             <AboutSection />
           </div>
-          
-          <div className="section-container my-8">
+           <SlidingTextSeparator text="Our Partners" />
+          <div className="section-container">
             <AnimatedBallsComponent />
           </div>
 
@@ -133,9 +133,10 @@ const HomePage = () => {
             </React.Fragment>
           ))}
           
-          <SlidingTextSeparator text="TESTIMONIALS" />
+          <SlidingTextSeparator  text="TESTIMONIALS" />
+          <div id="TESTIMONIALS"></div>
           {/* Testimonials Section */}
-          <TestimonialsSection />
+          <TestimonialsSection  />
         </main>
       </div>
       <Footer />

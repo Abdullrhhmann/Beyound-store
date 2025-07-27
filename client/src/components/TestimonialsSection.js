@@ -1,33 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
+import { useTranslation } from 'react-i18next';
+import testimonialData from '../data/testimonials';
 
 // TestimonialsSection component with 3D card flip animations
 const TestimonialsSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-20px", amount: 0.1 });
-  const [testimonials, setTestimonials] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isMobile = window.innerWidth < 768;
-
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/testimonials?limit=10`);
-        const data = await response.json();
-        setTestimonials(data.testimonials || []);
-      } catch (error) {
-        // setError('Failed to load testimonials'); // This line was removed
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTestimonials();
-  }, []);
+  const testimonials = testimonialData;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -100,7 +86,12 @@ const TestimonialsSection = () => {
                   <h3 className="text-white text-xl font-bold mb-2 tracking-wider break-words leading-tight">
                     {testimonial.name}
                   </h3>
-                  
+                  <p className="text-white/80 text-sm">
+                    {testimonial.location}
+                  </p>
+                  <p className="text-yellow-400/90 text-xs mt-1">
+                    {testimonial.productPurchased}
+                  </p>
                 </div>
               </div>
               {/* Corner Decorations */}
@@ -118,7 +109,7 @@ const TestimonialsSection = () => {
               <div className="flex-1 flex flex-col justify-center items-center">
                 <div className="text-accent-red text-3xl mb-1">"</div>
                 <p className="text-dark-900 text-sm leading-relaxed italic text-center break-words">
-                  {testimonial.quote}
+                  {testimonial.comment}
                 </p>
               </div>
               {/* Rating and Name */}
@@ -146,17 +137,7 @@ const TestimonialsSection = () => {
     );
   };
 
-  if (loading) {
-    return (
-      <section ref={ref} className="section-container bg-white relative py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
-          </div>
-        </div>
-      </section>
-    );
-  }
+
 
   return (
     <section ref={ref} className="section-container bg-transpearant relative py-20" style={{ willChange: 'transform' }}>
@@ -181,15 +162,15 @@ const TestimonialsSection = () => {
           className="text-center mb-8 sm:mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-            What Our Customers Say
+            {t('testimonials.title')}
           </h2>
           <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
-            Discover why people love our adaptive clothing and the difference it makes in their lives
+            {t('testimonials.subtitle')}
           </p>
           {/* Mobile scroll hint */}
           {isMobile && (
             <div className="md:hidden mt-4 text-gray-400 text-xs">
-              ← Swipe to see more testimonials →
+              {t('testimonials.swipeHint')}
             </div>
           )}
         </motion.div>

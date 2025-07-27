@@ -106,8 +106,7 @@ module.exports = {
         },
         scroll: {
           '0%': { transform: 'translateX(0)' },
-          
-          '100%': { transform: 'translateX(-400%)' },
+          '100%': { transform: 'translateX(-50%)' }
         },
         moveHorizontal: {
           '0%': { transform: 'translateX(-50%) translateY(-10%)' },
@@ -131,4 +130,4 @@ module.exports = {
     },
   },
   plugins: [],
-} 
+}

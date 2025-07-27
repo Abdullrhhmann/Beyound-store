@@ -1,0 +1,88 @@
+{
+  "welcome": "Welcome to Our Website",
+  "description": "This is an example page.",
+  "about": {
+    "stats": {
+      "adaptiveDesign": "Adaptive Design",
+      "textileWaste": "Textile Waste",
+      "empowerment": "Empowerment",
+      "innovation": "Innovation"
+    },
+    "values": {
+      "empowerment": {
+        "title": "Empowerment",
+        "description": "Every stitch empowers individuals with disabilities to dress with dignity, comfort, and style."
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "description": "We create adaptive clothing from repurposed textile waste, reducing environmental impact."
+      },
+      "community": {
+        "title": "Community",
+        "description": "Crafted by strong, underprivileged women trained to lead production with pride and purpose."
+      },
+      "inclusion": {
+        "title": "Inclusion",
+        "description": "Fashion that adapts to needs, not the other way around. Everyone deserves to be seen."
+      }
+    },
+    "story": {
+      "title": "Our Story",
+      "p1": "Our story began with a moment of clarity when we realized that for millions, clothing wasn't a source of confidence, but of daily struggle. We recognized that adaptive clothing was missing, and so were the voices it was meant to serve.",
+      "p2": "While tons of textile waste were being dumped into our environment, we launched our mission turning this problem into potential; creating adaptive clothes from upcycled materials, sewn by strong, underprivileged women.",
+      "p3": "For those who need more than just clothes; they need to be seen."
+    },
+    "need": {
+      "title": "Our Need",
+      "p1": "Getting dressed shouldn't be a daily battle; but for people with mobility, sensory, or physical challenges, it often is.",
+      "p2": "Traditional fashion excludes their needs, adding frustration to already difficult routines."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "subtitle": "To Empower. To Include. To BEYOUND.",
+      "desc": "We exist to empower individuals with disabilities by designing fashion that adapts to their needs, not the other way around. Our mission is rooted in sustainability, social inclusion, and community-driven innovation."
+    },
+    "solution": {
+      "title": "Our Solution",
+      "subtitle": "We Created Clothes That Don't Just Fit, They Free.",
+      "accessibility": {
+        "title": "Accessibility Features",
+        "p1": "Magnetic fastenings for easy dressing",
+        "p2": "Side openings for accessibility",
+        "p3": "Sensory-friendly fabrics"
+      },
+      "sustainable": {
+        "title": "Sustainable Impact",
+        "p1": "Made from repurposed textile waste",
+        "p2": "Crafted by women from overlooked communities",
+        "p3": "Without compromising style or identity"
+      }
+    }
+  },
+  "preloader": {
+    "marathon": "IT'S A MARATHON",
+    "sprint": "NOT A SPRINT"
+  },
+  "chatbot": {
+    "greeting": "Hello! How can I assist you today? I'm here to answer questions about the BEYOUND brand, our products, and our mission.",
+    "error": "Sorry, I'm having trouble connecting. Please try again later."
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "login": "Login",
+    "cart": "Cart"
+  },
+  "products": {
+    "size": "Size",
+    "addToCart": "Add to Cart"
+  },
+  "testimonials": {
+    "title": "What Our Customers Say",
+    "subtitle": "Discover why people love our adaptive clothing and the difference it makes in their lives",
+    "swipeHint": "← Swipe to see more testimonials →"
+  }
+} 

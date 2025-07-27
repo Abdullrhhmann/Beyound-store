@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const Preloader = ({ onLoadingComplete }) => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -77,7 +79,7 @@ const Preloader = ({ onLoadingComplete }) => {
                   delay: 0
                 }}
               >
-                IT'S A MARATHON
+                {t('preloader.marathon')}
               </motion.h1>
             </AnimatePresence>
 
@@ -103,7 +105,7 @@ const Preloader = ({ onLoadingComplete }) => {
                   delay: 0.5
                 }}
               >
-                NOT A SPRINT
+                {t('preloader.sprint')}
               </motion.h1>
             </AnimatePresence>
           </div>

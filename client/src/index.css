@@ -3,18 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --gradient-background-start: rgb(255, 94, 98);     /* Sunset Coral */
-  --gradient-background-end: rgb(255, 195, 113);     /* Soft Orange */
-
-  --first-color: 34, 87, 122;       /* Deep Ocean Blue */
-  --second-color: 255, 159, 67;     /* Warm Mango */
-  --third-color: 245, 205, 121;     /* Sand Yellow */
-  --fourth-color: 141, 153, 174;    /* Soft Stone */
-  --fifth-color: 255, 111, 145;     /* Watermelon Pink */
-  --pointer-color: 255, 234, 167;   /* Light Champagne */
-
+  --gradient-background-start: rgb(108, 0, 162);
+  --gradient-background-end: rgb(0, 17, 82);
+  --first-color: 18, 113, 255;
+  --second-color: 221, 74, 255;
+  --third-color: 100, 220, 255;
+  --fourth-color: 200, 50, 50;
+  --fifth-color: 180, 180, 50;
+  --pointer-color: 140, 100, 255;
   --size: 80%;
-  --blending-value: overlay;        /* Smooth mix, warm & glowing */
+  --blending-value: hard-light;
 }
 
 @layer base {

@@ -238,7 +238,7 @@ class BallSimulation {
             // Smaller balls for better performance
             const radius = isMobile() ? (Math.random() * 20 + 30) : (Math.random() * 40 + 50);
             const x = Math.random() * (this.canvas.width - radius * 2) + radius;
-            const y = Math.random() * (this.canvas.height / 2);
+            const y = Math.random() * (this.canvas.height / 3) + (this.canvas.height / 3); // Start balls in middle/lower area
             const logo = logos[i % logos.length];
             this.balls.push(new Ball(x, y, radius, logo));
         }
@@ -429,7 +429,7 @@ const AnimatedBallsComponent = () => {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100vw',
-        height: isMobile() ? '100vh' : '100vh',
+        height: isMobile() ? '100vh' : '100vh', // Further reduced height
         backgroundColor: 'transparent',
         margin: 0,
         padding: 0,
