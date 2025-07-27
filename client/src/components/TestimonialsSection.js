@@ -10,7 +10,6 @@ const TestimonialsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-20px", amount: 0.1 });
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isMobile = window.innerWidth < 768;
 
@@ -21,7 +20,7 @@ const TestimonialsSection = () => {
         const data = await response.json();
         setTestimonials(data.testimonials || []);
       } catch (error) {
-        setError('Failed to load testimonials');
+        // setError('Failed to load testimonials'); // This line was removed
       } finally {
         setLoading(false);
       }

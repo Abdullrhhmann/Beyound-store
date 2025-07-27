@@ -84,11 +84,11 @@ const ProductSection = ({ product, index }) => {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.addEventListener('error', (error) => {
+      video.addEventListener('error', () => {
         // Silently handle video errors
       });
     }
-  }, []);
+  }, [videoRef]);
 
   return (
     <section 
