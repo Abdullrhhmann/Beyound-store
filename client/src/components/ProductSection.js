@@ -1,8 +1,9 @@
 import React, { useRef as reactUseRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
 import { useTranslation } from 'react-i18next';
+import sizeChartImage from '../assets/images/sizeshart.png';
 
 const ProductSection = ({ product, index }) => {
   const { t } = useTranslation();
@@ -12,6 +13,7 @@ const ProductSection = ({ product, index }) => {
   const videoRef = reactUseRef(null);
   const [selectedSize, setSelectedSize] = useState('M');
   const [isVideoGrowing, setIsVideoGrowing] = useState(false);
+  const [showSizeChart, setShowSizeChart] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -220,7 +222,37 @@ const ProductSection = ({ product, index }) => {
                     {size}
                   </button>
                 ))}
+                <button
+                  onClick={() => setShowSizeChart(true)}
+                  className="px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 rounded-full border-2 border-white/40 text-white hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all duration-200 text-xs sm:text-base"
+                  type="button"
+                >
+                  Size Chart
+                </button>
               </div>
+
+              {/* Size Chart Modal */}
+              {showSizeChart && (
+                <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onClick={() => setShowSizeChart(false)}>
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    className="relative bg-white rounded-lg p-2 max-w-2xl max-h-[90vh] overflow-auto"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <button
+                      className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                      onClick={() => setShowSizeChart(false)}
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <img src={sizeChartImage} alt="Size Chart" className="w-full h-auto" />
+                  </motion.div>
+                </div>
+              )}
 
               <motion.button
                 onClick={handleAddToCart}

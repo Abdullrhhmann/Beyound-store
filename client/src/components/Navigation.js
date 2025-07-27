@@ -209,85 +209,60 @@ const Navigation = () => {
             
             {/* Menu Panel */}
             <motion.div
-              className="absolute top-16 left-4 right-4 bg-white/20 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-2xl w-auto mx-auto"
-              initial={{ y: -50, opacity: 0, scale: 0.8, rotateX: -15 }}
-              animate={{ y: 0, opacity: 1, scale: 1, rotateX: 0 }}
-              exit={{ y: -50, opacity: 0, scale: 0.8, rotateX: -15 }}
+              className="absolute top-0 bg-gradient-to-br from-purple-900/90 via-black/95 to-black/90 backdrop-blur-xl w-[85%] h-full max-w-sm rounded-r-3xl shadow-2xl border-r border-white/10 flex flex-col"
+              initial={{ x: -300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -300, opacity: 0 }}
               transition={{ 
-                duration: 0.4, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                type: "spring",
-                stiffness: 300,
-                damping: 25
+                duration: 0.3, 
+                ease: "easeOut"
               }}
             >
-              <div className="px-4 py-6 space-y-2">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.name}
-                    className="flex items-center space-x-3 w-full px-4 py-3 rounded-xl text-left hover:bg-white/20 transition-all duration-200 text-white font-medium"
-                    onClick={() => scrollToSection(item.section)}
-                    initial={{ x: -30, opacity: 0, scale: 0.9 }}
-                    animate={{ x: 0, opacity: 1, scale: 1 }}
-                    transition={{ 
-                      delay: index * 0.08,
-                      duration: 0.3
-                    }}
-                    whileHover={{ 
-                      x: 8, 
-                      scale: 1.02,
-                      backgroundColor: "rgba(255, 255, 255, 0.25)",
-                      transition: { duration: 0.2 }
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <motion.div
-                      initial={{ rotate: -10, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.08 + 0.1, duration: 0.3 }}
+              {/* Logo Section */}
+              <div className="p-6 border-b border-white/10">
+                <img src={logo} alt="BU Logo" className="h-8 w-auto" />
+              </div>
+              
+              {/* Navigation Items */}
+              <div className="flex-1 overflow-y-auto py-6">
+                <div className="px-3 space-y-1">
+                  {navItems.map((item, index) => (
+                    <motion.button
+                      key={item.name}
+                      className="flex items-center gap-3 w-full px-4 py-3.5 rounded-xl text-left transition-all duration-200 text-white/90 hover:text-white hover:bg-white/10"
+                      onClick={() => {
+                        const element = document.getElementById(item.section);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                          setIsMobileMenuOpen(false);
+                        }
+                      }}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.05, duration: 0.2 }}
                     >
-                      <item.icon className="h-5 w-5 text-white/80" />
-                    </motion.div>
-                    <span className="font-medium text-white">{item.name}</span>
-                  </motion.button>
-                ))}
-                
-                {/* Mobile Cart Button */}
+                      <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10">
+                        <item.icon className="h-5 w-5" />
+                      </span>
+                      <span>{item.name}</span>
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Cart Button */}
+              <div className="p-4 border-t border-white/10">
                 <motion.button
-                  className="flex items-center space-x-3 w-full px-4 py-3 rounded-xl text-left hover:bg-white/20 transition-all duration-200 text-white font-medium"
+                  className="flex items-center gap-3 w-full px-4 py-3.5 rounded-xl text-left transition-all duration-200 text-white/90 hover:text-white hover:bg-white/10"
                   onClick={() => {
                     setCartOpen(true);
                     setIsMobileMenuOpen(false);
                   }}
-                  initial={{ x: -30, opacity: 0, scale: 0.9 }}
-                  animate={isCartVibrating ? {
-                    x: [0, -3, 3, -3, 3, 0],
-                    rotate: [0, -2, 2, -2, 2, 0]
-                  } : { x: 0, opacity: 1, scale: 1 }}
-                  transition={isCartVibrating ? {
-                    duration: 0.6
-                  } : { 
-                    delay: navItems.length * 0.08,
-                    duration: 0.3
-                  }}
-                  whileHover={{ 
-                    x: 8, 
-                    scale: 1.02,
-                    backgroundColor: "rgba(255, 255, 255, 0.25)",
-                    transition: { duration: 0.2 }
-                  }}
-                  whileTap={{ scale: 0.95 }}
                 >
-                  <motion.div
-                    initial={{ rotate: -10, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    transition={{ delay: navItems.length * 0.08 + 0.1, duration: 0.3 }}
-                  >
-                    <ShoppingCart className="h-5 w-5 text-white/80" />
-                  </motion.div>
-                  <span className="font-medium text-white">
-                    {t('nav.cart')} {totalItems > 0 && `(${totalItems})`}
+                  <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10">
+                    <ShoppingCart className="h-5 w-5" />
                   </span>
+                  <span>Cart {totalItems > 0 && `(${totalItems})`}</span>
                 </motion.button>
               </div>
             </motion.div>

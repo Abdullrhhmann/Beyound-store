@@ -104,11 +104,11 @@ const TestimonialsSection = () => {
     return (
       <motion.div
         variants={cardVariants}
-        className="relative w-48 sm:w-56 h-64 sm:h-80 perspective-1000 mx-auto"
+        className="relative w-[280px] sm:w-56 h-[420px] sm:h-80 perspective-1000 mx-auto"
         onMouseEnter={() => setIsFlipped(true)}
         onMouseLeave={() => setIsFlipped(false)}
         onTouchStart={() => setIsFlipped(!isFlipped)}
-        style={{ minWidth: '12rem' }}
+        style={{ minWidth: isMobile ? '280px' : '12rem' }}
       >
         <div
           className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
@@ -117,26 +117,26 @@ const TestimonialsSection = () => {
         >
           {/* Card Back (Poker Card Style) */}
           <div className="absolute inset-0 w-full h-full backface-hidden flex items-center justify-center">
-            <div className="w-full h-full bg-gradient-to-br from-red-900/80 via-black/80  rounded-2xl md:rounded-lg p-6 md:p-8 shadow-3xl shadow-black/60 flex flex-col justify-center relative overflow-hidden">
+            <div className="w-full h-full bg-gradient-to-br from-red-900/80 via-black/80  rounded-2xl md:rounded-lg p-8 sm:p-6 shadow-3xl shadow-black/60 flex flex-col justify-center relative overflow-hidden">
               {/* Card Pattern */}
               <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <div className="absolute top-2 left-2 text-white text-2xl font-bold">♠</div>
-                <div className="absolute bottom-2 right-2 text-white text-2xl font-bold transform rotate-180">♠</div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-6xl opacity-30">♠</div>
+                <div className="absolute top-4 left-4 text-white text-3xl sm:text-2xl font-bold">♠</div>
+                <div className="absolute bottom-4 right-4 text-white text-3xl sm:text-2xl font-bold transform rotate-180">♠</div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-7xl sm:text-6xl opacity-30">♠</div>
               </div>
               {/* Card Border Pattern */}
-              <div className="absolute inset-0 border-2 border-white/20 rounded-lg m-2 pointer-events-none"></div>
-              <div className="absolute inset-0 border border-white/10 rounded-lg m-4 pointer-events-none"></div>
+              <div className="absolute inset-0 border-2 border-white/20 rounded-lg m-3 sm:m-2 pointer-events-none"></div>
+              <div className="absolute inset-0 border border-white/10 rounded-lg m-6 sm:m-4 pointer-events-none"></div>
               {/* Name */}
               <div className="flex-1 flex items-center justify-center">
-                <div className="text-center px-2">
-                  <h3 className="text-white text-xl font-bold mb-2 tracking-wider break-words leading-tight">
+                <div className="text-center px-4 sm:px-2">
+                  <h3 className="text-white text-2xl sm:text-xl font-bold mb-3 sm:mb-2 tracking-wider break-words leading-tight">
                     {testimonial.name}
                   </h3>
-                  <p className="text-white/80 text-sm">
+                  <p className="text-white/80 text-base sm:text-sm">
                     {testimonial.location}
                   </p>
-                  <p className="text-yellow-400/90 text-xs mt-1">
+                  <p className="text-yellow-400/90 text-sm sm:text-xs mt-2 sm:mt-1">
                     {testimonial.productPurchased}
                   </p>
                 </div>
@@ -150,22 +150,22 @@ const TestimonialsSection = () => {
           </div>
 
           {/* Card Front (Testimonial) */}
-          <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 flex items-center justify-center">
-            <div className="w-full h-full bg-white rounded-xl border-2 shadow-2xl p-4 flex flex-col justify-between">
+          <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+            <div className="w-full h-full bg-white rounded-xl border-2 shadow-2xl p-4 sm:p-4 flex flex-col justify-between overflow-hidden">
               {/* Quote */}
-              <div className="flex-1 flex flex-col justify-center items-center">
-                <div className="text-accent-red text-3xl mb-1">"</div>
-                <p className="text-dark-900 text-sm leading-relaxed italic text-center break-words">
+              <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+                <div className="text-accent-red text-3xl sm:text-2xl mb-2 sm:mb-1 text-center">"</div>
+                <p className="text-dark-900 text-sm sm:text-xs leading-relaxed italic text-center px-2 sm:px-1">
                   {testimonial.comment}
                 </p>
               </div>
               {/* Rating and Name */}
-              <div className="mt-2 text-center">
-                <div className="flex justify-center space-x-1 mb-1">
+              <div className="mt-4 sm:mt-2 text-center border-t border-gray-100 pt-3 sm:pt-2">
+                <div className="flex justify-center space-x-1 sm:space-x-0.5 mb-2 sm:mb-1">
                   {[...Array(testimonial.rating || 5)].map((_, i) => (
                     <svg
                       key={i}
-                      className="w-4 h-4 text-yellow-400"
+                      className="w-5 h-5 sm:w-4 sm:h-4 text-yellow-400"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -173,9 +173,10 @@ const TestimonialsSection = () => {
                     </svg>
                   ))}
                 </div>
-                <h4 className=" font-semibold text-xs">
+                <h4 className="font-semibold text-sm sm:text-xs mb-1">
                   {testimonial.name}
                 </h4>
+                <p className="text-gray-500 text-xs">{testimonial.location}</p>
               </div>
             </div>
           </div>
