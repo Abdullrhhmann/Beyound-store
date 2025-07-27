@@ -4,85 +4,24 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
+// TestimonialsSection component with 3D card flip animations
 const TestimonialsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px", amount: 0.1 });
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isMobile = window.innerWidth < 768;
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch('/api/testimonials?limit=10');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/testimonials?limit=10`);
         const data = await response.json();
         setTestimonials(data.testimonials || []);
       } catch (error) {
-        console.error('Error fetching testimonials:', error);
-        // Fallback to static data if API fails
-        setTestimonials([
-          {
-            _id: 1,
-            name: "Sarah Johnson",
-            quote: "This platform has completely transformed my shopping experience. The smooth animations and intuitive design make every purchase a pleasure.",
-            rating: 5
-          },
-          {
-            _id: 2,
-            name: "Michael Chen",
-            quote: "I've never seen such attention to detail in an e-commerce site. The product presentations are stunning and the checkout process is seamless.",
-            rating: 5
-          },
-          {
-            _id: 3,
-            name: "Emily Rodriguez",
-            quote: "The customer service is exceptional and the product quality is outstanding. This is now my go-to platform for all my shopping needs.",
-            rating: 5
-          },
-          {
-            _id: 4,
-            name: "David Thompson",
-            quote: "The mobile experience is just as smooth as desktop. The responsive design and touch interactions are perfectly implemented.",
-            rating: 5
-          },
-          {
-            _id: 5,
-            name: "Lisa Wang",
-            quote: "I love how each product section has its own unique feel with the dynamic background colors. It creates such an immersive experience.",
-            rating: 5
-          },
-          {
-            _id: 6,
-            name: "Alex Martinez",
-            quote: "The attention to detail in the UI/UX is remarkable. Every interaction feels natural and the visual feedback is spot on.",
-            rating: 5
-          },
-          {
-            _id: 7,
-            name: "Rachel Green",
-            quote: "Fast shipping and excellent packaging. The products arrived in perfect condition and exceeded my expectations.",
-            rating: 5
-          },
-          {
-            _id: 8,
-            name: "James Wilson",
-            quote: "The search functionality is incredibly intuitive. I can find exactly what I'm looking for in seconds.",
-            rating: 5
-          },
-          {
-            _id: 9,
-            name: "Maria Garcia",
-            quote: "The loyalty program is fantastic. I love earning points with every purchase and the exclusive member benefits.",
-            rating: 5
-          },
-          {
-            _id: 10,
-            name: "Tom Anderson",
-            quote: "Outstanding quality and competitive prices. This platform has become my first choice for online shopping.",
-            rating: 5
-          }
-        ]);
+        setError('Failed to load testimonials');
       } finally {
         setLoading(false);
       }
@@ -96,21 +35,21 @@ const TestimonialsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        duration: 0.3,
+        ease: "easeOut"
       },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50, rotateY: -90 },
+    hidden: { opacity: 0, y: 20, rotateY: -20 },
     visible: {
       opacity: 1,
       y: 0,
       rotateY: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut",
+        duration: 0.3,
+        ease: "easeOut"
       },
     },
   };
@@ -221,7 +160,7 @@ const TestimonialsSection = () => {
   }
 
   return (
-    <section ref={ref} className="section-container bg-transpearant relative py-20">
+    <section ref={ref} className="section-container bg-transpearant relative py-20" style={{ willChange: 'transform' }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -235,6 +174,7 @@ const TestimonialsSection = () => {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
+        style={{ willChange: 'transform, opacity' }}
       >
         {/* Section Title */}
         <motion.div 
@@ -296,80 +236,81 @@ const TestimonialsSection = () => {
         )}
       </motion.div>
 
-      {/* Floating Elements */}
+      {/* Floating Elements - Optimized for 60fps */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(4)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-purple-400/20 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${20 + i * 20}%`,
+              top: `${25 + (i % 2) * 50}%`,
             }}
             animate={{
-              y: [0, -25, 0],
-              opacity: [0.2, 0.5, 0.2],
+              y: [0, -20, 0],
+              opacity: [0.2, 0.4, 0.2],
             }}
             transition={{
-              duration: 4 + Math.random() * 2,
+              duration: 3 + i * 0.5,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: i * 0.8,
+              ease: "easeInOut"
             }}
           />
         ))}
       </div>
 
-      <style jsx>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        
-        .transform-style-preserve-3d {
-          transform-style: preserve-3d;
-        }
-        
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-        
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        
-        /* Smooth scrolling for mobile */
-        .overflow-x-auto {
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-        }
-        
-        /* Better touch scrolling on mobile */
-        @media (max-width: 768px) {
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .perspective-1000 {
+            perspective: 1000px;
+          }
+          
+          .transform-style-preserve-3d {
+            transform-style: preserve-3d;
+          }
+          
+          .backface-hidden {
+            backface-visibility: hidden;
+          }
+          
+          .rotate-y-180 {
+            transform: rotateY(180deg);
+          }
+          
+          .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+          
           .overflow-x-auto {
-            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
           }
-        }
-        
-        @media (max-width: 1024px) {
-          .grid {
-            grid-template-columns: repeat(2, 1fr);
+          
+          @media (max-width: 768px) {
+            .overflow-x-auto {
+              scroll-snap-type: x mandatory;
+            }
           }
-        }
-        
-        @media (max-width: 768px) {
-          .grid {
-            grid-template-columns: 1fr;
+          
+          @media (max-width: 1024px) {
+            .grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
           }
-        }
-      `}</style>
+          
+          @media (max-width: 768px) {
+            .grid {
+              grid-template-columns: 1fr;
+            }
+          }
+        `
+      }} />
     </section>
   );
 };

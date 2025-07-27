@@ -5,11 +5,11 @@ const Preloader = ({ onLoadingComplete }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Total animation time: 3 seconds (1.5s per circle)
+    // Total animation time: 1.5 seconds (0.75s per circle) - reduced from 3.5s
     const timer = setTimeout(() => {
       setIsLoading(false);
       onLoadingComplete();
-    }, 3500);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, [onLoadingComplete]);
@@ -33,8 +33,7 @@ const Preloader = ({ onLoadingComplete }) => {
               opacity: [1, 1, 1, 0]
             }}
             transition={{ 
-              duration: 2,
-              ease: "easeInOut",
+              duration: 1,
               times: [0, 0.1, 0.8, 1]
             }}
           />
@@ -49,10 +48,9 @@ const Preloader = ({ onLoadingComplete }) => {
               opacity: [0, 1, 1, 0]
             }}
             transition={{ 
-              duration: 2,
-              ease: "easeInOut",
+              duration: 1,
               times: [0, 0.1, 0.8, 1],
-              delay: 1
+              delay: 0.5
             }}
           />
 
@@ -75,8 +73,7 @@ const Preloader = ({ onLoadingComplete }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.2 }}
                 transition={{ 
-                  duration: 1,
-                  ease: "easeOut",
+                  duration: 0.5,
                   delay: 0
                 }}
               >
@@ -102,9 +99,8 @@ const Preloader = ({ onLoadingComplete }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 2 }}
                 transition={{ 
-                  duration: 1,
-                  ease: "easeOut",
-                  delay: 1.3
+                  duration: 0.5,
+                  delay: 0.5
                 }}
               >
                 NOT A SPRINT

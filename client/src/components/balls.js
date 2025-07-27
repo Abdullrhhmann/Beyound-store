@@ -229,7 +229,7 @@ class BallSimulation {
         ];
 
         // Reduce ball count and size for better performance
-        const ballCount = isMobile() ? 13 : 26;
+        const ballCount = isMobile() ? 13 : 13;
         this.createBalls(ballCount, logos);
     }
 

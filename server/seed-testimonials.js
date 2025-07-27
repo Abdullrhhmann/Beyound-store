@@ -78,10 +78,7 @@ const sampleTestimonials = [
 async function seedTestimonials() {
   try {
     // Connect to MongoDB
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/modern-ecommerce', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/modern-ecommerce');
     
     console.log('Connected to MongoDB');
     

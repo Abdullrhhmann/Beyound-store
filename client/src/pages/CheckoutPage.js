@@ -115,18 +115,6 @@ const CheckoutPage = () => {
         notes: formData.additionalNotes || '',
       };
 
-      console.log('=== SENDING ORDER PAYLOAD ===');
-      console.log('Order payload:', orderPayload);
-      console.log('Cart items:', items);
-      console.log('Cart items structure:', items.map(item => ({
-        hasProductId: !!item.productId,
-        productId: item.productId,
-        hasSize: !!item.size,
-        size: item.size,
-        name: item.name
-      })));
-
-      // Send to backend
       const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -139,7 +127,6 @@ const CheckoutPage = () => {
       }
 
       const orderData = await response.json();
-      console.log('Order created successfully:', orderData);
       
       // Show success message
       localStorage.setItem('lastOrderNumber', orderData.orderNumber);
@@ -157,7 +144,6 @@ const CheckoutPage = () => {
         errorMsg = error.response.data?.message || errorMsg;
       }
       alert('Order failed: ' + errorMsg);
-      console.error('Payment failed:', error);
       setIsProcessing(false);
     }
   };

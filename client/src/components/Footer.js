@@ -3,19 +3,19 @@ import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import logo from '../assets/logos/logo.webp';
 
 const blobFloat1 = {
-  animation: 'footerBlobFloat1 10s ease-in-out infinite alternate',
+  animation: 'footerBlobFloat1 10s infinite alternate',
 };
 const blobFloat2 = {
-  animation: 'footerBlobFloat2 12s ease-in-out infinite alternate',
+  animation: 'footerBlobFloat2 12s infinite alternate',
 };
 const blobFloat3 = {
-  animation: 'footerBlobFloat3 14s ease-in-out infinite alternate',
+  animation: 'footerBlobFloat3 14s infinite alternate',
 };
 const blobFloat4 = {
-  animation: 'footerBlobFloat4 11s ease-in-out infinite alternate',
+  animation: 'footerBlobFloat4 11s infinite alternate',
 };
 const blobFloat5 = {
-  animation: 'footerBlobFloat5 16s ease-in-out infinite alternate',
+  animation: 'footerBlobFloat5 16s infinite alternate',
 };
 
 // Add keyframes to the page (for demo, in production use a CSS file or Tailwind config)

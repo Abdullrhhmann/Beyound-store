@@ -33,8 +33,7 @@ router.get('/', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Error fetching testimonials:', error);
-    res.status(500).json({ message: 'Error fetching testimonials' });
+    res.status(500).json({ message: 'Failed to fetch testimonials' });
   }
 });
 
@@ -49,8 +48,7 @@ router.get('/:id', async (req, res) => {
     
     res.json(testimonial);
   } catch (error) {
-    console.error('Error fetching testimonial:', error);
-    res.status(500).json({ message: 'Error fetching testimonial' });
+    res.status(500).json({ message: 'Failed to fetch testimonial' });
   }
 });
 
@@ -76,8 +74,7 @@ router.post('/', [
       testimonial
     });
   } catch (error) {
-    console.error('Error creating testimonial:', error);
-    res.status(500).json({ message: 'Error creating testimonial' });
+    res.status(500).json({ message: 'Failed to create testimonial' });
   }
 });
 
@@ -106,8 +103,7 @@ router.put('/:id', [
     
     res.json(testimonial);
   } catch (error) {
-    console.error('Error updating testimonial:', error);
-    res.status(500).json({ message: 'Error updating testimonial' });
+    res.status(500).json({ message: 'Failed to update testimonial' });
   }
 });
 
@@ -122,8 +118,7 @@ router.delete('/:id', async (req, res) => {
     
     res.json({ message: 'Testimonial deleted successfully' });
   } catch (error) {
-    console.error('Error deleting testimonial:', error);
-    res.status(500).json({ message: 'Error deleting testimonial' });
+    res.status(500).json({ message: 'Failed to delete testimonial' });
   }
 });
 
@@ -146,8 +141,7 @@ router.get('/stats/overview', async (req, res) => {
       averageRating: avgRating.length > 0 ? Math.round(avgRating[0].avgRating * 10) / 10 : 0
     });
   } catch (error) {
-    console.error('Error fetching testimonial stats:', error);
-    res.status(500).json({ message: 'Error fetching testimonial statistics' });
+    res.status(500).json({ message: 'Failed to fetch testimonial stats' });
   }
 });
 

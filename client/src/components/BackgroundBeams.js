@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -51,7 +51,6 @@ const BackgroundBeams = React.memo(({ className }) => {
             }}
             transition={{
               duration: Math.random() * 10 + 10,
-              ease: "easeInOut",
               repeat: Infinity,
               repeatType: "reverse",
               delay: Math.random() * 10,
@@ -77,7 +76,6 @@ const BackgroundBeams = React.memo(({ className }) => {
               }}
               transition={{
                 duration: Math.random() * 10 + 10,
-                ease: "easeInOut",
                 repeat: Infinity,
                 delay: Math.random() * 10,
               }}

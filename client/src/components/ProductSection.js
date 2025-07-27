@@ -5,7 +5,7 @@ import { useCart } from '../contexts/CartContext';
 
 const ProductSection = ({ product, index }) => {
   const ref = reactUseRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px", amount: 0.1 });
   const { addToCart, totalItems } = useCart();
   const videoRef = reactUseRef(null);
   const [selectedSize, setSelectedSize] = useState('M');
@@ -16,20 +16,20 @@ const ProductSection = ({ product, index }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        duration: 0.3,
+        ease: "easeOut"
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut",
+        duration: 0.3,
+        ease: "easeOut"
       },
     },
   };
@@ -46,7 +46,7 @@ const ProductSection = ({ product, index }) => {
     // Only trigger video growth animation if cart has less than 10 items
     if (totalItems < 10) {
       setIsVideoGrowing(true);
-      setTimeout(() => setIsVideoGrowing(false), 600);
+      setTimeout(() => setIsVideoGrowing(false), 400);
     }
   };
 
@@ -57,7 +57,7 @@ const ProductSection = ({ product, index }) => {
         try {
           await videoRef.current.play();
         } catch (error) {
-          console.log('Autoplay prevented:', error);
+          // Silently handle video errors
         }
       };
       
@@ -81,10 +81,20 @@ const ProductSection = ({ product, index }) => {
     }
   }, [videoRef]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.addEventListener('error', (error) => {
+        // Silently handle video errors
+      });
+    }
+  }, []);
+
   return (
     <section 
       ref={ref} 
       className={`section-container bg-transparent relative overflow-hidden`}
+      style={{ willChange: 'transform' }}
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -99,6 +109,7 @@ const ProductSection = ({ product, index }) => {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
+        style={{ willChange: 'transform, opacity' }}
       >
         <motion.div variants={itemVariants} className="mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-5xl md:text-7xl font-bold text-white font-display mb-6 sm:mb-8">
@@ -114,8 +125,9 @@ const ProductSection = ({ product, index }) => {
               <motion.div
                 className={`w-full max-w-[140px] sm:max-w-[180px] md:max-w-[160px] lg:max-w-[220px] mx-auto bg-transparent rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center group relative overflow-hidden`}
                 whileHover={{ scale: 1.02 }}
-                animate={isVideoGrowing ? { scale: [1, 1.15, 1] } : {}}
-                transition={isVideoGrowing ? { duration: 0.6, ease: "easeInOut" } : { type: "spring", stiffness: 300 }}
+                animate={isVideoGrowing ? { scale: [1, 1.1, 1] } : {}}
+                transition={isVideoGrowing ? { duration: 0.4, ease: "easeOut" } : { type: "spring", stiffness: 400, damping: 25 }}
+                style={{ willChange: 'transform' }}
               >
                 {/* Product Video (autoplay, always visible) */}
                 <video
@@ -126,11 +138,12 @@ const ProductSection = ({ product, index }) => {
                   loop
                   autoPlay
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   webkit-playsinline="true"
                   x5-playsinline="true"
                   x5-video-player-type="h5"
                   x5-video-player-fullscreen="false"
+                  loading="lazy"
                 />
                 {/* Overlayed Initial (hidden when image/video shown) */}
                 <div className="w-full h-full flex items-center justify-center relative z-30 transition-opacity duration-300 opacity-0">
@@ -140,24 +153,25 @@ const ProductSection = ({ product, index }) => {
                 </div>
               </motion.div>
               
-              {/* Floating Elements */}
+              {/* Floating Elements - Reduced for better performance */}
               <div className="absolute inset-0 pointer-events-none">
-                {[...Array(4)].map((_, i) => (
+                {[...Array(2)].map((_, i) => (
                   <motion.div
                     key={i}
                     className="absolute w-2 sm:w-3 h-2 sm:h-3 bg-black/20 rounded-full"
                     style={{
-                      left: `${20 + i * 20}%`,
-                      top: `${30 + (i % 2) * 40}%`,
+                      left: `${30 + i * 40}%`,
+                      top: `${40 + (i % 2) * 20}%`,
                     }}
                     animate={{
-                      y: [0, -20, 0],
-                      opacity: [0.2, 0.6, 0.2],
+                      y: [0, -15, 0],
+                      opacity: [0.2, 0.5, 0.2],
                     }}
                     transition={{
-                      duration: 3 + i * 0.5,
+                      duration: 2 + i * 0.5,
                       repeat: Infinity,
-                      delay: i * 0.3,
+                      delay: i * 0.5,
+                      ease: "easeInOut"
                     }}
                   />
                 ))}

@@ -53,8 +53,10 @@ router.post('/', async (req, res) => {
 
     res.json({ reply: response.data.choices[0].message.content });
   } catch (error) {
-    console.error('Error with OpenRouter API:', error.response ? JSON.stringify(error.response.data, null, 2) : error.message);
-    res.status(500).json({ message: 'Error processing your request', error: error.message });
+    res.status(500).json({
+      message: 'Failed to process chat request',
+      error: 'Internal server error'
+    });
   }
 });
 

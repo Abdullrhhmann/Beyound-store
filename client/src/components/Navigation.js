@@ -21,9 +21,9 @@ const Navigation = () => {
     if (!hero) return;
     const observer = new window.IntersectionObserver(
       ([entry]) => {
-        setHeroInView(entry.isIntersecting && entry.intersectionRatio > 0.5);
+        setHeroInView(entry.isIntersecting && entry.intersectionRatio > 0.2);
       },
-      { threshold: [0.5] }
+      { threshold: [0.2, 0.5, 0.8] }
     );
     observer.observe(hero);
     return () => observer.disconnect();
@@ -48,19 +48,10 @@ const Navigation = () => {
   }, [addTrigger]);
 
   const scrollToSection = (sectionId) => {
-    console.log('Attempting to scroll to section:', sectionId);
-    // Add a small delay to ensure DOM is ready
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        console.log('Element found, scrolling to:', el);
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        console.log('Element not found for section:', sectionId);
-        // Fallback: scroll to bottom of page
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-      }
-    }, 100);
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -83,7 +74,7 @@ const Navigation = () => {
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6 }}
       >
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16">
@@ -154,8 +145,7 @@ const Navigation = () => {
                 rotate: [0, -2, 2, -2, 2, 0]
               } : {}}
               transition={isCartVibrating ? {
-                duration: 0.6,
-                ease: "easeInOut"
+                duration: 0.6
               } : {}}
             >
               <ShoppingCart className="h-8 w-8 text-white" />
@@ -230,8 +220,7 @@ const Navigation = () => {
                     animate={{ x: 0, opacity: 1, scale: 1 }}
                     transition={{ 
                       delay: index * 0.08,
-                      duration: 0.3,
-                      ease: "easeOut"
+                      duration: 0.3
                     }}
                     whileHover={{ 
                       x: 8, 
@@ -265,12 +254,10 @@ const Navigation = () => {
                     rotate: [0, -2, 2, -2, 2, 0]
                   } : { x: 0, opacity: 1, scale: 1 }}
                   transition={isCartVibrating ? {
-                    duration: 0.6,
-                    ease: "easeInOut"
+                    duration: 0.6
                   } : { 
                     delay: navItems.length * 0.08,
-                    duration: 0.3,
-                    ease: "easeOut"
+                    duration: 0.3
                   }}
                   whileHover={{ 
                     x: 8, 

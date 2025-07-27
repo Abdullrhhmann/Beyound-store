@@ -52,8 +52,9 @@ const AdminDashboard = () => {
       const ordersArray = data.orders || (Array.isArray(data) ? data : []);
       setOrders(ordersArray);
     } catch (error) {
-      console.error('Error fetching orders:', error);
       setOrders([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,7 +66,6 @@ const AdminDashboard = () => {
       setProducts(productsArray);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching products:', error);
       setProducts([]);
       setLoading(false);
     }
@@ -83,7 +83,6 @@ const AdminDashboard = () => {
         alert('Order status updated successfully!');
       }
     } catch (error) {
-      console.error('Error updating order status:', error);
       alert('Failed to update order status');
     }
   };
@@ -105,7 +104,6 @@ const AdminDashboard = () => {
         alert('Failed to delete order');
       }
     } catch (error) {
-      console.error('Error deleting order:', error);
       alert('Failed to delete order');
     }
   };
@@ -159,7 +157,6 @@ const AdminDashboard = () => {
         alert(`Failed to create order: ${errorData.message || 'Unknown error'}`);
       }
     } catch (error) {
-      console.error('Error creating order:', error);
       alert('Failed to create order: ' + error.message);
     }
   };
@@ -176,7 +173,6 @@ const AdminDashboard = () => {
         alert('Product price updated successfully!');
       }
     } catch (error) {
-      console.error('Error updating product price:', error);
       alert('Failed to update product price');
     }
   };

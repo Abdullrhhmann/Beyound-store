@@ -47,8 +47,7 @@ router.get('/', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).json({ message: 'Error fetching products' });
+    res.status(500).json({ message: 'Failed to fetch products' });
   }
 });
 
@@ -63,8 +62,7 @@ router.get('/:id', async (req, res) => {
     
     res.json(product);
   } catch (error) {
-    console.error('Error fetching product:', error);
-    res.status(500).json({ message: 'Error fetching product' });
+    res.status(500).json({ message: 'Failed to fetch product' });
   }
 });
 
@@ -88,8 +86,7 @@ router.post('/', [
     
     res.status(201).json(product);
   } catch (error) {
-    console.error('Error creating product:', error);
-    res.status(500).json({ message: 'Error creating product' });
+    res.status(500).json({ message: 'Failed to create product' });
   }
 });
 
@@ -120,8 +117,7 @@ router.put('/:id', [
     
     res.json(product);
   } catch (error) {
-    console.error('Error updating product:', error);
-    res.status(500).json({ message: 'Error updating product' });
+    res.status(500).json({ message: 'Failed to update product' });
   }
 });
 
@@ -140,8 +136,7 @@ router.delete('/:id', async (req, res) => {
     
     res.json({ message: 'Product deleted successfully' });
   } catch (error) {
-    console.error('Error deleting product:', error);
-    res.status(500).json({ message: 'Error deleting product' });
+    res.status(500).json({ message: 'Failed to delete product' });
   }
 });
 
@@ -151,8 +146,7 @@ router.get('/categories/list', async (req, res) => {
     const categories = await Product.distinct('category');
     res.json(categories);
   } catch (error) {
-    console.error('Error fetching categories:', error);
-    res.status(500).json({ message: 'Error fetching categories' });
+    res.status(500).json({ message: 'Failed to fetch categories' });
   }
 });
 

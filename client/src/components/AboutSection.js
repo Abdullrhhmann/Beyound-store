@@ -5,30 +5,30 @@ import ceoImage from '../assets/images/ceo.webp';
 import gemyImage from '../assets/images/gemy.webp';
 
 // Animation variants (centralized for clarity)
-const getSlideInFromLeft = (duration, ease) => ({
+const getSlideInFromLeft = (duration) => ({
   hidden: { opacity: 0, x: -50 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration, ease }
+    transition: { duration }
   }
 });
 
-const getSlideInFromRight = (duration, ease) => ({
+const getSlideInFromRight = (duration) => ({
   hidden: { opacity: 0, x: 50 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration, ease }
+    transition: { duration }
   }
 });
 
-const getFadeInUp = (duration, ease) => ({
+const getFadeInUp = (duration) => ({
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration, ease }
+    transition: { duration }
   }
 });
 
@@ -74,7 +74,6 @@ const AboutSection = () => {
 
   // Animation config
   const baseDuration = isMobile ? 0.3 : 0.6;
-  const baseEase = [0.25, 0.46, 0.45, 0.94];
 
   return (
     <section className="section-container bg-transparent pt-0 pb-20">
@@ -88,7 +87,7 @@ const AboutSection = () => {
         ) : (
           <motion.div 
             className="text-center mb-8"
-            variants={getSlideInFromLeft(baseDuration, baseEase)}
+            variants={getSlideInFromLeft(baseDuration)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
@@ -123,7 +122,7 @@ const AboutSection = () => {
           ) : (
             <motion.div 
               className="bg-gradient-to-br from-red-900/80 via-black/80 to-gray-900/80 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-3xl shadow-black/60 flex flex-col justify-between"
-              variants={getSlideInFromLeft(baseDuration, baseEase)}
+              variants={getSlideInFromLeft(baseDuration)}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
@@ -155,7 +154,7 @@ const AboutSection = () => {
           ) : (
             <motion.div 
               className="bg-gradient-to-br from-blue-900/80 via-black/80 to-purple-900/80 rounded-2xl md:rounded-3xl shadow-3xl shadow-black/60 overflow-hidden"
-              variants={getFadeInUp(baseDuration, baseEase)}
+              variants={getFadeInUp(baseDuration)}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
@@ -173,7 +172,7 @@ const AboutSection = () => {
           ) : (
             <motion.div 
               className="bg-gradient-to-br from-blue-900/80 via-black/80 to-purple-900/80 rounded-2xl md:rounded-3xl shadow-3xl shadow-black/60 overflow-hidden"
-              variants={getFadeInUp(baseDuration, baseEase)}
+              variants={getFadeInUp(baseDuration)}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
@@ -204,7 +203,7 @@ const AboutSection = () => {
         ) : (
           <motion.div 
             className="bg-gradient-to-br from-red-900/80 via-black/80 to-gray-900/80 rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-3xl shadow-black/60 flex flex-col max-w-2xl mx-auto mb-20 mt-8"
-            variants={getSlideInFromRight(baseDuration, baseEase)}
+            variants={getSlideInFromRight(baseDuration)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
@@ -238,7 +237,7 @@ const AboutSection = () => {
         ) : (
           <motion.div 
             className="bg-gradient-to-r from-black via-gray-900 to-black text-white p-8 md:p-12 rounded-2xl md:rounded-3xl mb-16 md:mb-24 text-center"
-            variants={getSlideInFromLeft(baseDuration, baseEase)}
+            variants={getSlideInFromLeft(baseDuration)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
@@ -248,7 +247,7 @@ const AboutSection = () => {
               className="flex justify-center mb-6"
               initial={{ transform: 'rotate(0deg)' }}
               whileInView={{ transform: 'rotate(360deg)' }}
-              transition={{ duration: 1.2, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 1.2, delay: 0.8 }}
               viewport={{ once: true, amount: 0.6 }}
               style={{ willChange: 'transform' }}
             >
@@ -285,9 +284,9 @@ const AboutSection = () => {
                 whileHover={{
                   scale: 1.05,
                   y: -10,
-                  transition: { duration: 0.01, ease: baseEase }
+                  transition: { duration: 0.01 }
                 }}
-                variants={index % 2 === 0 ? getSlideInFromLeft(baseDuration, baseEase) : getSlideInFromRight(baseDuration, baseEase)}
+                variants={index % 2 === 0 ? getSlideInFromLeft(baseDuration) : getSlideInFromRight(baseDuration)}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.6 }}
@@ -314,7 +313,7 @@ const AboutSection = () => {
           ) : (
             <motion.h3 
               className="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-12 md:mb-16"
-              variants={getSlideInFromLeft(baseDuration, baseEase)}
+              variants={getSlideInFromLeft(baseDuration)}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
@@ -341,9 +340,9 @@ const AboutSection = () => {
                   whileHover={{
                     scale: 1.05,
                     y: -10,
-                    transition: { duration: 0.08, ease: baseEase }
+                    transition: { duration: 0.08 }
                   }}
-                  variants={index % 2 === 0 ? getSlideInFromLeft(baseDuration, baseEase) : getSlideInFromRight(baseDuration, baseEase)}
+                  variants={index % 2 === 0 ? getSlideInFromLeft(baseDuration) : getSlideInFromRight(baseDuration)}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.6 }}
@@ -362,7 +361,7 @@ const AboutSection = () => {
         <div className="mb-12 md:mb-16">
           <motion.div 
             className="text-center mb-8 md:mb-12"
-            variants={getSlideInFromLeft(baseDuration, baseEase)}
+            variants={getSlideInFromLeft(baseDuration)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.6 }}
@@ -381,7 +380,7 @@ const AboutSection = () => {
             {/* First Flash Card - Slides in from left */}
             <motion.div 
               className="bg-gradient-to-br from-blue-900 via-black to-blue-800 p-6 md:p-8 rounded-3xl shadow-2xl border border-blue-500/20 flex flex-col justify-center min-h-[280px] md:min-h-[320px] transform rotate-3"
-              variants={getSlideInFromLeft(baseDuration, baseEase)}
+              variants={getSlideInFromLeft(baseDuration)}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
@@ -412,7 +411,7 @@ const AboutSection = () => {
             {/* Second Flash Card - Slides in from right */}
             <motion.div 
               className="bg-gradient-to-br from-red-900/80 via-black/80 to-gray-900/80 p-6 md:p-8 rounded-3xl shadow-3xl shadow-black/60 border border-red-500/20 flex flex-col justify-center min-h-[280px] md:min-h-[320px] transform rotate-3"
-              variants={getSlideInFromRight(baseDuration, baseEase)}
+              variants={getSlideInFromRight(baseDuration)}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
@@ -445,7 +444,7 @@ const AboutSection = () => {
         {/* Final Call to Action - Slides in from left */}
         <motion.div 
           className="text-center"
-          variants={getSlideInFromLeft(baseDuration, baseEase)}
+          variants={getSlideInFromLeft(baseDuration)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.6 }}
@@ -455,7 +454,7 @@ const AboutSection = () => {
             className="text-3xl md:text-4xl font-bold text-white mb-6"
             whileHover={{ 
               transform: 'scale(1.05)',
-              transition: { duration: 0.08, ease: baseEase }
+              transition: { duration: 0.08 }
             }}
             style={{ willChange: 'transform' }}
           >

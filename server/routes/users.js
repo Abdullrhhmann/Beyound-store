@@ -60,8 +60,7 @@ router.post('/register', [
       token
     });
   } catch (error) {
-    console.error('Error registering user:', error);
-    res.status(500).json({ message: 'Error registering user' });
+    res.status(500).json({ message: 'Failed to register user' });
   }
 });
 
@@ -106,8 +105,7 @@ router.post('/login', [
       token
     });
   } catch (error) {
-    console.error('Error logging in user:', error);
-    res.status(500).json({ message: 'Error logging in user' });
+    res.status(500).json({ message: 'Failed to login user' });
   }
 });
 
@@ -134,8 +132,7 @@ router.get('/profile', (req, res) => {
       user: userWithoutPassword
     });
   } catch (error) {
-    console.error('Error fetching user profile:', error);
-    res.status(401).json({ message: 'Invalid token' });
+    res.status(500).json({ message: 'Failed to fetch user profile' });
   }
 });
 
@@ -185,8 +182,7 @@ router.put('/profile', [
       user: userWithoutPassword
     });
   } catch (error) {
-    console.error('Error updating user profile:', error);
-    res.status(500).json({ message: 'Error updating user profile' });
+    res.status(500).json({ message: 'Failed to update user profile' });
   }
 });
 
@@ -231,8 +227,7 @@ router.post('/change-password', [
       message: 'Password changed successfully'
     });
   } catch (error) {
-    console.error('Error changing password:', error);
-    res.status(500).json({ message: 'Error changing password' });
+    res.status(500).json({ message: 'Failed to change password' });
   }
 });
 

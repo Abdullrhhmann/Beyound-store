@@ -76,45 +76,31 @@ export const CartProvider = ({ children }) => {
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      try {
-        const items = JSON.parse(savedCart);
-        console.log('Loading cart from localStorage:', items);
+    try {
+      const savedItems = localStorage.getItem('cart');
+      if (savedItems) {
+        const items = JSON.parse(savedItems);
         
-        // Migrate old cart items that use 'id' to 'productId'
+        // Migrate old cart format to new format
         const migratedItems = items.map(item => {
-          console.log('Processing cart item:', item);
-          
-          // If item has 'id' but no 'productId', use 'id' as 'productId'
           if (item.id && !item.productId) {
-            console.log('Migrating item with id to productId:', item.id);
-            return { ...item, productId: item.id };
+            // Old format: convert id to productId
+            return {
+              ...item,
+              productId: item.id,
+              id: undefined
+            };
           }
-          
-          // If item has neither 'id' nor 'productId', this is invalid
-          if (!item.productId) {
-            console.log('Invalid cart item - no productId:', item);
-            return null;
-          }
-          
           return item;
-        }).filter(item => item !== null); // Remove invalid items
+        }).filter(item => item.productId); // Remove invalid items
         
-        console.log('Migrated cart items:', migratedItems);
-        
-        // Clear the old cart first
-        dispatch({ type: 'CLEAR_CART' });
-        
-        // Add migrated items
+        dispatch({ type: 'CLEAR_CART' }); // Clear the old cart first
         migratedItems.forEach(item => {
           dispatch({ type: 'ADD_ITEM', payload: item });
         });
-      } catch (error) {
-        console.error('Error loading cart from localStorage:', error);
-        // Clear invalid cart data
-        localStorage.removeItem('cart');
       }
+    } catch (error) {
+      // Silently handle localStorage errors
     }
   }, []);
 
@@ -158,7 +144,6 @@ export const CartProvider = ({ children }) => {
   const clearCartAndStorage = () => {
     dispatch({ type: 'CLEAR_CART' });
     localStorage.removeItem('cart');
-    console.log('Cart and localStorage cleared completely');
   };
 
   const setCartOpen = (isOpen) => {

@@ -60,11 +60,8 @@ const products = [
   }
 ];
 
-// Connect to MongoDB
-mongoose.connect('mongodb+srv://beyound:admin@beyound.pkowrj5.mongodb.net/?retryWrites=true&w=majority&appName=beyound', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+// Connect to MongoDB using environment variable
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('Connected to MongoDB for seeding'))
 .catch(err => console.error('MongoDB connection error:', err));
 

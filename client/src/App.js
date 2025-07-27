@@ -10,9 +10,9 @@ import Preloader from './components/Preloader';
 import Chatbot from './components/Chatbot';
 
 function App() {
-  // Preloader total duration (ms)
-  const PRELOADER_DURATION = 2700; // matches Preloader.js
-  const APP_REVEAL_BEFORE = 800; // ms before preloader ends
+  // Preloader total duration (ms) - reduced for faster loading
+  const PRELOADER_DURATION = 1500; // reduced from 2700ms
+  const APP_REVEAL_BEFORE = 500; // ms before preloader ends - reduced from 800ms
 
   const [showPreloader, setShowPreloader] = useState(true);
   const [showApp, setShowApp] = useState(false);
@@ -32,7 +32,7 @@ function App() {
     <>
       {showPreloader && <Preloader onLoadingComplete={() => {}} />}
       {showApp && (
-        <Router>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <ScrollProvider>
             <CartProvider>
               <div className="App">

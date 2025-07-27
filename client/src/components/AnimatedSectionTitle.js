@@ -86,7 +86,7 @@ const AnimatedSectionTitle = ({ title, height = '100vh', bg = '#7c0a1e' }) => {
           justifyContent: 'center',
           alignItems: 'center',
           opacity: style.opacity,
-          transition: 'opacity 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transition: 'opacity 0.1s',
           pointerEvents: 'none',
           willChange: 'opacity',
         }}
@@ -99,7 +99,7 @@ const AnimatedSectionTitle = ({ title, height = '100vh', bg = '#7c0a1e' }) => {
             letterSpacing: '0.1em',
             transform: `scale(${style.scale})`,
             opacity: style.opacity,
-            transition: 'transform 0.05s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            transition: 'transform 0.05s, opacity 0.1s',
             willChange: 'transform, opacity',
             textAlign: 'center',
             whiteSpace: 'nowrap',

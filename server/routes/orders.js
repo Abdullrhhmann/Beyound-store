@@ -43,8 +43,7 @@ router.get('/', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Error fetching orders:', error);
-    res.status(500).json({ message: 'Error fetching orders' });
+    res.status(500).json({ message: 'Failed to fetch orders' });
   }
 });
 
@@ -60,8 +59,7 @@ router.get('/:id', async (req, res) => {
     
     res.json(order);
   } catch (error) {
-    console.error('Error fetching order:', error);
-    res.status(500).json({ message: 'Error fetching order' });
+    res.status(500).json({ message: 'Failed to fetch order' });
   }
 });
 
@@ -129,7 +127,9 @@ router.post('/', [
     
     // Save order to file
     fs.appendFile('orders.txt', JSON.stringify(order) + '\n', err => {
-      if (err) console.error('Failed to write order to file:', err);
+      if (err) {
+        // Silently handle file write errors
+      }
     });
     
     console.log('Order created successfully:', order.orderNumber);
@@ -139,8 +139,7 @@ router.post('/', [
       order
     });
   } catch (error) {
-    console.error('Error creating order:', error);
-    res.status(500).json({ message: 'Error creating order' });
+    res.status(500).json({ message: 'Failed to create order' });
   }
 });
 
@@ -175,8 +174,7 @@ router.put('/:id/status', [
       order
     });
   } catch (error) {
-    console.error('Error updating order status:', error);
-    res.status(500).json({ message: 'Error updating order status' });
+    res.status(500).json({ message: 'Failed to update order status' });
   }
 });
 
@@ -205,8 +203,7 @@ router.put('/:id/payment', [
       order
     });
   } catch (error) {
-    console.error('Error updating payment status:', error);
-    res.status(500).json({ message: 'Error updating payment status' });
+    res.status(500).json({ message: 'Failed to update payment status' });
   }
 });
 
@@ -239,8 +236,7 @@ router.get('/stats/overview', async (req, res) => {
       averageOrderValue: avgOrderValue.length > 0 ? Math.round(avgOrderValue[0].avg * 100) / 100 : 0
     });
   } catch (error) {
-    console.error('Error fetching order stats:', error);
-    res.status(500).json({ message: 'Error fetching order statistics' });
+    res.status(500).json({ message: 'Failed to fetch order stats' });
   }
 });
 
@@ -289,8 +285,7 @@ router.delete('/:id', async (req, res) => {
     
     res.json({ message: 'Order deleted successfully' });
   } catch (error) {
-    console.error('Error deleting order:', error);
-    res.status(500).json({ message: 'Error deleting order' });
+    res.status(500).json({ message: 'Failed to delete order' });
   }
 });
 
