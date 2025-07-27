@@ -1,5 +1,5 @@
 import React, { useRef as reactUseRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useCart } from '../contexts/CartContext';
 import { useTranslation } from 'react-i18next';
