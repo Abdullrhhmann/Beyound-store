@@ -7,16 +7,19 @@ function cn(...inputs) {
 }
 
 const BackgroundGradientAnimation = ({
-  gradientBackgroundStart = "rgb(108, 0, 162)",
-  gradientBackgroundEnd = "rgb(0, 17, 82)",
-  firstColor = "18, 113, 255",
-  secondColor = "221, 74, 255",
-  thirdColor = "100, 220, 255",
-  fourthColor = "200, 50, 50",
-  fifthColor = "180, 180, 50",
-  pointerColor = "140, 100, 255",
+  gradientBackgroundStart = "rgb(36, 0, 70)",       // Deep violet
+  gradientBackgroundEnd = "rgb(255, 0, 110)",       // Hot pink
+
+  firstColor = "255, 85, 0",      // Neon orange
+  secondColor = "0, 255, 255",    // Cyan
+  thirdColor = "255, 0, 255",     // Magenta
+  fourthColor = "0, 255, 127",    // Mint green
+  fifthColor = "255, 255, 0",     // Yellow
+  pointerColor = "0, 191, 255",   // Deep sky blue
+
   size = "80%",
-  blendingValue = "hard-light",
+  blendingValue = "lighter",      // Bright pop blending
+
   children,
   className,
   interactive = true,

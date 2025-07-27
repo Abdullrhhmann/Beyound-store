@@ -130,7 +130,7 @@ const Navigation = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Settings className="h-4 w-4" />
-                <span className="hidden sm:inline">Admin</span>
+                <span className="hidden sm:inline">Login</span>
               </motion.button>
             </Link>
 

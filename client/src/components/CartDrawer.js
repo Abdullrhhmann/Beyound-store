@@ -71,7 +71,7 @@ const CartDrawer = () => {
               <div className={`flex items-center justify-between border-b border-black/10 ${
                 isMobile ? 'p-4' : 'p-6'
               }`}>
-                <h2 className={`font-semibold text-black ${isMobile ? 'text-lg' : 'text-xl'}`}>
+                <h2 className={`font-semibold text-white ${isMobile ? 'text-lg' : 'text-xl'}`}>
                   Shopping Cart
                 </h2>
                 <motion.button
