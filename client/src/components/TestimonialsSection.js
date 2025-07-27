@@ -4,7 +4,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { useTranslation } from 'react-i18next';
-import testimonialData from '../data/testimonials';
+import testimonialData from '../data/testimonials.js';
 
 // TestimonialsSection component with 3D card flip animations
 const TestimonialsSection = () => {
