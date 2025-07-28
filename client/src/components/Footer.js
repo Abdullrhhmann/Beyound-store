@@ -110,9 +110,9 @@ const Footer = () => {
           &copy; {currentYear} BEYOUND. All rights reserved.
         </div>
         {/* Developer Copyright */}
-        <div className="text-center text-gray-500 text-xs mt-2 w-full">
+        {/* <div className="text-center text-gray-500 text-xs mt-2 w-full">
           Developed with ❤️ by <a href="https://github.com/abdullrhhmann" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">@abdullrhhmann</a>
-        </div>
+        </div> */}
         {/* Big Logo at the Bottom Center */}
         <img
           src={logo}

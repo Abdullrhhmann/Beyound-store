@@ -245,11 +245,11 @@ const ProductSection = ({ product, index }) => {
                       className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                       onClick={() => setShowSizeChart(false)}
                     >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg zindex="99999999" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
-                    <img src={sizeChartImage} alt="Size Chart" className="w-full h-auto" />
+                    <img zindex="99999999" src={sizeChartImage} alt="Size Chart" className="w-full h-auto" />
                   </motion.div>
                 </div>
               )}
