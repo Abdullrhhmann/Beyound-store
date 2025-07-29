@@ -54,6 +54,7 @@ const ProductSection = ({ product }) => {
     };
 
     playVideo();
+
     const handleUserInteraction = () => {
       playVideo();
       document.removeEventListener('touchstart', handleUserInteraction);
@@ -67,11 +68,10 @@ const ProductSection = ({ product }) => {
       document.removeEventListener('touchstart', handleUserInteraction);
       document.removeEventListener('click', handleUserInteraction);
     };
-  }, []);
+  }, [videoRef]);
 
   return (
     <section ref={ref} className="section-container bg-transparent relative overflow-hidden">
-      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0"
