@@ -233,23 +233,23 @@ const ProductSection = ({ product, index }) => {
 
               {/* Size Chart Modal */}
               {showSizeChart && (
-                <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onClick={() => setShowSizeChart(false)}>
+                <div className="fixed inset-0 bg-black bg-opacity-75 z-[9999] flex items-center justify-center p-4 isolation-isolate" onClick={() => setShowSizeChart(false)}>
                   <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.9, opacity: 0 }}
-                    className="relative bg-white rounded-lg p-2 max-w-2xl max-h-[90vh] overflow-auto"
+                    className="relative bg-white rounded-lg p-2 max-w-2xl max-h-[90vh] overflow-auto z-[10000]"
                     onClick={e => e.stopPropagation()}
                   >
                     <button
-                      className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                      className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 z-[10001]"
                       onClick={() => setShowSizeChart(false)}
                     >
-                      <svg zindex="99999999" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
-                    <img zindex="99999999" src={sizeChartImage} alt="Size Chart" className="w-full h-auto" />
+                    <img src={sizeChartImage} alt="Size Chart" className="w-full h-auto z-[10001]" />
                   </motion.div>
                 </div>
               )}
@@ -269,4 +269,4 @@ const ProductSection = ({ product, index }) => {
   );
 };
 
-export default ProductSection; 
+export default ProductSection;
