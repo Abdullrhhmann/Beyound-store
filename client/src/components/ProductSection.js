@@ -124,38 +124,63 @@ const ProductSection = ({ product, index }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-center">
           {/* Product Video - Always First on mobile, Left on desktop */}
-          <motion.div variants={itemVariants} className="z-0 order-1 lg:order-1">
-            <div className="relative">
-              <motion.div
-                className={`w-full max-w-[140px] sm:max-w-[180px] md:max-w-[160px] lg:max-w-[220px] mx-auto bg-transparent rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center group relative overflow-hidden`}
-                whileHover={{ scale: 1.02 }}
-                animate={isVideoGrowing ? { scale: [1, 1.1, 1] } : {}}
-                transition={isVideoGrowing ? { duration: 0.4, ease: "easeOut" } : { type: "spring", stiffness: 400, damping: 25 }}
-                style={{ willChange: 'transform' }}
-              >
-                {/* Product Video (autoplay, always visible) */}
-                <video
-                  ref={videoRef}
-                  className="w-full h-auto object-contain rounded-lg sm:rounded-xl lg:rounded-2xl relative z-20"
-                  src={videoFiles[product.name]}
-                  muted
-                  loop
-                  autoPlay
-                  playsInline
-                  preload="metadata"
-                  webkit-playsinline="true"
-                  x5-playsinline="true"
-                  x5-video-player-type="h5"
-                  x5-video-player-fullscreen="false"
-                  loading="lazy"
-                />
-                {/* Overlayed Initial (hidden when image/video shown) */}
-                <div className="w-full h-full flex items-center justify-center relative z-30 transition-opacity duration-300 opacity-0">
-                  <span className="text-3xl sm:text-5xl md:text-7xl font-bold text-gray-400 select-none">
-                    {product.name.charAt(0)}
-                  </span>
-                </div>
-              </motion.div>
+<motion.div variants={itemVariants} className="z-0 order-1 lg:order-1">
+  <div className="relative z-0">
+    <motion.div
+      className={`w-full max-w-[140px] sm:max-w-[180px] md:max-w-[160px] lg:max-w-[220px] mx-auto bg-transparent rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center group relative overflow-hidden`}
+      whileHover={{ scale: 1.02 }}
+      animate={isVideoGrowing ? { scale: [1, 1.1, 1] } : {}}
+      transition={isVideoGrowing ? { duration: 0.4, ease: "easeOut" } : { type: "spring", stiffness: 400, damping: 25 }}
+      style={{ willChange: 'transform' }}
+    >
+      {/* Conditionally Render Video */}
+      {!showSizeChart && (
+        <video
+          ref={videoRef}
+          className="w-full h-auto object-contain rounded-lg sm:rounded-xl lg:rounded-2xl relative z-20"
+          src={videoFiles[product.name]}
+          muted
+          loop
+          autoPlay
+          playsInline
+          preload="metadata"
+          style={{ zIndex: 0 }}
+        />
+      )}
+
+      {/* Overlayed Initial (hidden when image/video shown) */}
+      <div className="w-full h-full flex items-center justify-center relative z-30 transition-opacity duration-300 opacity-0">
+        <span className="text-3xl sm:text-5xl md:text-7xl font-bold text-gray-400 select-none">
+          {product.name.charAt(0)}
+        </span>
+      </div>
+    </motion.div>
+
+    {/* Floating Elements - Reduced for better performance */}
+    <div className="absolute inset-0 pointer-events-none">
+      {[...Array(2)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 sm:w-3 h-2 sm:h-3 bg-black/20 rounded-full"
+          style={{
+            left: `${30 + i * 40}%`,
+            top: `${40 + (i % 2) * 20}%`,
+          }}
+          animate={{
+            y: [0, -15, 0],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 2 + i * 0.5,
+            repeat: Infinity,
+            delay: i * 0.5,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+    </div>
+  </div>
+</motion.div>
               
               {/* Floating Elements - Reduced for better performance */}
               <div className="absolute inset-0 pointer-events-none">
