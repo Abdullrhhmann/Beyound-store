@@ -5,7 +5,7 @@ import { useCart } from '../contexts/CartContext';
 import { useTranslation } from 'react-i18next';
 import sizeChartImage from '../assets/images/sizeshart.png';
 
-const ProductSection = ({ product, index }) => {
+const ProductSection = ({ product }) => {
   const { t } = useTranslation();
   const ref = reactUseRef(null);
   const isInView = useInView(ref, { once: true, margin: "-20px", amount: 0.1 });
@@ -19,10 +19,7 @@ const ProductSection = ({ product, index }) => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      },
+      transition: { duration: 0.3, ease: "easeOut" },
     },
   };
 
@@ -31,14 +28,10 @@ const ProductSection = ({ product, index }) => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      },
+      transition: { duration: 0.3, ease: "easeOut" },
     },
   };
 
-  // Map product names to video filenames
   const videoFiles = {
     'Quarter Zipper': require('../assets/videos/quarter zipper.mp4'),
     'Pants': require('../assets/videos/pants.mp4'),
@@ -47,65 +40,46 @@ const ProductSection = ({ product, index }) => {
 
   const handleAddToCart = () => {
     addToCart({ ...product, productId: product._id, size: selectedSize }, 1);
-    // Only trigger video growth animation if cart has less than 10 items
     if (totalItems < 10) {
       setIsVideoGrowing(true);
       setTimeout(() => setIsVideoGrowing(false), 400);
     }
   };
 
-  // Ensure video autoplays on mobile
   useEffect(() => {
-    if (videoRef.current) {
-      const playVideo = async () => {
-        try {
-          await videoRef.current.play();
-        } catch (error) {
-          // Silently handle video errors
-        }
-      };
-      
-      // Try to play immediately
-      playVideo();
-      
-      // Also try when user interacts with the page
-      const handleUserInteraction = () => {
-        playVideo();
-        document.removeEventListener('touchstart', handleUserInteraction);
-        document.removeEventListener('click', handleUserInteraction);
-      };
-      
-      document.addEventListener('touchstart', handleUserInteraction);
-      document.addEventListener('click', handleUserInteraction);
-      
-      return () => {
-        document.removeEventListener('touchstart', handleUserInteraction);
-        document.removeEventListener('click', handleUserInteraction);
-      };
-    }
-  }, [videoRef]);
+    const playVideo = async () => {
+      try {
+        await videoRef.current?.play();
+      } catch (_) {}
+    };
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.addEventListener('error', () => {
-        // Silently handle video errors
-      });
-    }
-  }, [videoRef]);
+    playVideo();
+    const handleUserInteraction = () => {
+      playVideo();
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+    };
+
+    document.addEventListener('touchstart', handleUserInteraction);
+    document.addEventListener('click', handleUserInteraction);
+
+    return () => {
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+    };
+  }, []);
 
   return (
-    <section 
-      ref={ref} 
-      className={`section-container bg-transparent relative overflow-hidden`}
-      style={{ willChange: 'transform' }}
-    >
+    <section ref={ref} className="section-container bg-transparent relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 75% 75%, black 1px, transparent 1px)`,
-          backgroundSize: '100px 100px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 75% 75%, black 1px, transparent 1px)`,
+            backgroundSize: '100px 100px'
+          }}
+        />
       </div>
 
       <motion.div
@@ -113,7 +87,6 @@ const ProductSection = ({ product, index }) => {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        style={{ willChange: 'transform, opacity' }}
       >
         <motion.div variants={itemVariants} className="mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-5xl md:text-7xl font-bold text-white font-display mb-6 sm:mb-8">
@@ -123,134 +96,72 @@ const ProductSection = ({ product, index }) => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-center">
-          {/* Product Video - Always First on mobile, Left on desktop */}
-<motion.div variants={itemVariants} className="z-0 order-1 lg:order-1">
-  <div className="relative z-0">
-    <motion.div
-      className={`w-full max-w-[140px] sm:max-w-[180px] md:max-w-[160px] lg:max-w-[220px] mx-auto bg-transparent rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center group relative overflow-hidden`}
-      whileHover={{ scale: 1.02 }}
-      animate={isVideoGrowing ? { scale: [1, 1.1, 1] } : {}}
-      transition={isVideoGrowing ? { duration: 0.4, ease: "easeOut" } : { type: "spring", stiffness: 400, damping: 25 }}
-      style={{ willChange: 'transform' }}
-    >
-      {/* Conditionally Render Video */}
-      {!showSizeChart && (
-        <video
-          ref={videoRef}
-          className="w-full h-auto object-contain rounded-lg sm:rounded-xl lg:rounded-2xl relative z-20"
-          src={videoFiles[product.name]}
-          muted
-          loop
-          autoPlay
-          playsInline
-          preload="metadata"
-          style={{ zIndex: 0 }}
-        />
-      )}
-
-      {/* Overlayed Initial (hidden when image/video shown) */}
-      <div className="w-full h-full flex items-center justify-center relative z-30 transition-opacity duration-300 opacity-0">
-        <span className="text-3xl sm:text-5xl md:text-7xl font-bold text-gray-400 select-none">
-          {product.name.charAt(0)}
-        </span>
-      </div>
-    </motion.div>
-
-    {/* Floating Elements - Reduced for better performance */}
-    <div className="absolute inset-0 pointer-events-none">
-      {[...Array(2)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 sm:w-3 h-2 sm:h-3 bg-black/20 rounded-full"
-          style={{
-            left: `${30 + i * 40}%`,
-            top: `${40 + (i % 2) * 20}%`,
-          }}
-          animate={{
-            y: [0, -15, 0],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: 2 + i * 0.5,
-            repeat: Infinity,
-            delay: i * 0.5,
-            ease: "easeInOut"
-          }}
-        />
-      ))}
-    </div>
-  </div>
-</motion.div>
-              
-              {/* Floating Elements - Reduced for better performance */}
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(2)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-2 sm:w-3 h-2 sm:h-3 bg-black/20 rounded-full"
-                    style={{
-                      left: `${30 + i * 40}%`,
-                      top: `${40 + (i % 2) * 20}%`,
-                    }}
-                    animate={{
-                      y: [0, -15, 0],
-                      opacity: [0.2, 0.5, 0.2],
-                    }}
-                    transition={{
-                      duration: 2 + i * 0.5,
-                      repeat: Infinity,
-                      delay: i * 0.5,
-                      ease: "easeInOut"
-                    }}
+          {/* Product Video */}
+          <motion.div variants={itemVariants} className="z-0 order-1 lg:order-1">
+            <div className="relative z-[1]">
+              <motion.div
+                className="w-full max-w-[140px] sm:max-w-[180px] md:max-w-[160px] lg:max-w-[220px] mx-auto bg-transparent rounded-lg flex items-center group relative overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                animate={isVideoGrowing ? { scale: [1, 1.1, 1] } : {}}
+                transition={isVideoGrowing ? { duration: 0.4, ease: "easeOut" } : { type: "spring", stiffness: 400, damping: 25 }}
+              >
+                {!showSizeChart && (
+                  <video
+                    ref={videoRef}
+                    className="w-full h-auto object-contain rounded-lg relative z-[1]"
+                    src={videoFiles[product.name]}
+                    muted
+                    loop
+                    autoPlay
+                    playsInline
+                    preload="metadata"
                   />
-                ))}
-              </div>
+                )}
+              </motion.div>
             </div>
           </motion.div>
 
-          {/* Product Details - Always Second on mobile, Right on desktop */}
+          {/* Product Details */}
           <motion.div variants={itemVariants} className="text-left relative z-10 w-full order-2 lg:order-2">
-            <div className="flex-1 flex flex-col justify-between bg-gradient-to-r from-black via-gray-900 to-black bg-opacity-90 rounded-lg sm:rounded-xl p-1.5 sm:p-4 md:p-5 shadow-xl border border-white/10 pointer-events-auto w-full max-w-[280px] sm:max-w-none mx-auto">
-              <h3 className="text-xs sm:text-base md:text-lg font-semibold text-white mb-1 sm:mb-3 text-[10px] sm:text-base md:text-lg">
+            <div className="flex-1 flex flex-col justify-between bg-gradient-to-r from-black via-gray-900 to-black rounded-lg p-1.5 sm:p-4 md:p-5 border border-white/10 w-full max-w-[280px] sm:max-w-none mx-auto">
+              <h3 className="text-xs sm:text-base md:text-lg font-semibold text-white mb-1">
                 {product.name}
               </h3>
-              
-              <p className="text-[9px] sm:text-sm text-gray-200 mb-1.5 sm:mb-4 leading-relaxed">
-                {product.description}
-              </p>
 
-              <div className="space-y-1 sm:space-y-2 mb-1.5 sm:mb-4 flex-1">
+              <p className="text-[9px] sm:text-sm text-gray-200 mb-4">{product.description}</p>
+
+              <div className="space-y-2 mb-4">
                 {product.features?.map((feature, idx) => (
-                  <div key={idx} className="flex items-center space-x-0.5 sm:space-x-1.5">
-                    <div className="w-0.5 sm:w-1 h-0.5 sm:h-1 bg-white rounded-full flex-shrink-0" />
+                  <div key={idx} className="flex items-center space-x-1.5">
+                    <div className="w-1 h-1 bg-white rounded-full" />
                     <span className="text-[9px] sm:text-sm text-gray-300">{feature}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-1.5 sm:mb-4 gap-2 sm:gap-0">
-                <span className="text-sm sm:text-xl md:text-2xl font-bold text-white">
-                  {product.price} EGP
-                </span>
-              </div>
+              <span className="text-sm sm:text-xl font-bold text-white mb-4">
+                {product.price} EGP
+              </span>
 
               {/* Size Selector */}
-              <div className="mb-1.5 sm:mb-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
                 <span className="font-semibold text-xs sm:text-base text-white">{t('products.size')}:</span>
                 {['S', 'M', 'L'].map(size => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 rounded-full border-2 font-bold transition-all duration-200 focus:outline-none text-xs sm:text-base ${selectedSize === size ? 'bg-yellow-400 text-black border-yellow-400 shadow-lg scale-105 sm:scale-110' : 'bg-transparent text-white border-white/40 hover:bg-yellow-400 hover:text-black hover:border-yellow-400'}`}
-                    type="button"
+                    className={`px-3 py-1 rounded-full border-2 font-bold text-xs sm:text-base ${
+                      selectedSize === size
+                        ? 'bg-yellow-400 text-black border-yellow-400 shadow-lg scale-105'
+                        : 'bg-transparent text-white border-white/40 hover:bg-yellow-400 hover:text-black hover:border-yellow-400'
+                    }`}
                   >
                     {size}
                   </button>
                 ))}
                 <button
                   onClick={() => setShowSizeChart(true)}
-                  className="px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 rounded-full border-2 border-white/40 text-white hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all duration-200 text-xs sm:text-base"
-                  type="button"
+                  className="px-3 py-1 rounded-full border-2 border-white/40 text-white hover:bg-yellow-400 hover:text-black hover:border-yellow-400 text-xs sm:text-base"
                 >
                   Size Chart
                 </button>
@@ -258,7 +169,10 @@ const ProductSection = ({ product, index }) => {
 
               {/* Size Chart Modal */}
               {showSizeChart && (
-                <div className="fixed inset-0 bg-black bg-opacity-75 z-[9999] flex items-center justify-center p-4 isolation-isolate" onClick={() => setShowSizeChart(false)}>
+                <div
+                  className="fixed inset-0 bg-black bg-opacity-75 z-[9999] flex items-center justify-center p-4 isolation-isolate"
+                  onClick={() => setShowSizeChart(false)}
+                >
                   <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -282,7 +196,7 @@ const ProductSection = ({ product, index }) => {
               <motion.button
                 onClick={handleAddToCart}
                 whileTap={{ scale: 0.97 }}
-                className="mt-1 sm:mt-3 md:mt-4 w-full py-2.5 sm:py-3.5 md:py-4 rounded-lg sm:rounded-xl bg-yellow-400 text-black font-bold text-sm sm:text-lg md:text-xl shadow-lg hover:bg-yellow-300 hover:text-black transition-colors duration-200 border-2 border-yellow-400"
+                className="mt-3 w-full py-3 rounded-lg bg-yellow-400 text-black font-bold text-sm sm:text-lg shadow-lg hover:bg-yellow-300 transition-colors border-2 border-yellow-400"
               >
                 {t('products.addToCart')}
               </motion.button>
